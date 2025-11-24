@@ -1,6 +1,6 @@
-# Elion AI Research Assistant
+# Elion Healthcare Vendor Intelligence Platform
 
-An AI-powered research assistant platform that helps health IT leaders discover and analyze research papers about the health tech landscape.
+A platform for healthcare IT leaders to track and analyze vendor relationships, products, and unstructured research data about the health tech landscape.
 
 ## Tech Stack
 
@@ -13,8 +13,8 @@ An AI-powered research assistant platform that helps health IT leaders discover 
 ## Prerequisites
 
 - Node.js 20+ installed
-- Docker and Docker Compose installed
-- OpenAI API key
+- Database credentials (provided separately)
+- OpenAI API key (provided separately)
 
 ## Getting Started
 
@@ -26,51 +26,26 @@ npm install
 
 ### 2. Set Up Environment Variables
 
-Copy the example environment file:
+Create a `.env.local` file in the root directory and add the provided environment variables:
 
 ```bash
-cp .env.example .env.local
+DATABASE_URL=<provided_database_url>
+OPENAI_API_KEY=<provided_openai_key>
 ```
 
-Add your OpenAI API key to `.env.local`:
-
-```
-OPENAI_API_KEY=your_api_key_here
-```
-
-### 3. Start the Database
-
-```bash
-docker compose up -d
-```
-
-Verify it's running:
-
-```bash
-docker compose ps
-```
-
-### 4. Run Migrations
-
-```bash
-npm run db:migrate:up
-```
-
-### 5. Seed the Database
-
-```bash
-npm run db:seed
-```
-
-This will populate the database with sample users and health systems.
-
-### 6. Start the Development Server
+### 3. Start the Development Server
 
 ```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to see the application.
+
+The database is already set up with sample data:
+- 4 sample users (health system executives)
+- 8 healthcare vendors (Epic, Cerner, Health Catalyst, etc.)
+- 24 products across all vendors
+- 5 health systems
 
 ## Project Structure
 
@@ -84,13 +59,17 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 │   └── ui/                   # shadcn/ui components
 ├── db/
 │   ├── entities/             # MikroORM entity definitions
-│   │   ├── User.ts           # Example: User entity
-│   │   ├── HealthSystem.ts   # Example: HealthSystem entity
-│   │   └── Vendor.ts         # Example: Vendor entity
+│   │   ├── User.ts           # Health system users
+│   │   ├── HealthSystem.ts   # Healthcare organizations
+│   │   ├── Vendor.ts         # Healthcare vendors (Epic, Cerner, etc.)
+│   │   └── Product.ts        # Vendor products (EpicCare, MyChart, etc.)
 │   ├── migrations/           # Database migrations
 │   ├── config.ts             # MikroORM configuration
 │   ├── orm.ts                # ORM helper functions
 │   └── seed.ts               # Database seeding script
+├── unstructured_data/        # Sample unstructured research data
+│   ├── vendor_notes/         # Call notes, transcripts, assessments
+│   └── product_notes/        # Product feedback, implementation notes
 ├── lib/
 │   └── openai.ts             # OpenAI client setup
 ├── docker-compose.yml        # PostgreSQL container config
@@ -104,35 +83,45 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 - `npm run start` - Start production server
 - `npm run lint` - Run Biome linter
 - `npm run format` - Format code with Biome
+- `npm run db:reset` - Drop schema, run migrations, and seed database (fresh start)
 - `npm run db:migrate:create` - Create a new migration
 - `npm run db:migrate:up` - Run pending migrations
 - `npm run db:migrate:down` - Rollback last migration
 - `npm run db:seed` - Seed database with sample data
 
-## Database Access
+## Data Model
 
-You can access the PostgreSQL database directly:
+### Entities
 
-```bash
-docker exec -it elion-interview-db psql -U elion -d elion_interview
-```
+- **User**: Health system executives and IT leaders
+- **HealthSystem**: Healthcare organizations (hospitals, medical centers)
+- **Vendor**: Healthcare technology vendors (Epic, Cerner, Health Catalyst, etc.)
+- **Product**: Specific products offered by vendors (EpicCare, MyChart, etc.)
 
-Useful psql commands:
-- `\dt` - List all tables
-- `\d table_name` - Describe table structure
-- `SELECT * FROM user;` - Query data
+### Relationships
+
+- Vendor → Product: One-to-Many (vendors offer multiple products)
+
+### Unstructured Data
+
+The `unstructured_data/` directory contains realistic sample data that simulates real-world vendor research:
+
+**Vendor Notes** (`unstructured_data/vendor_notes/`):
+- Call notes from vendor meetings
+- Meeting transcripts with detailed discussions
+- Security assessments and compliance reviews
+- Contract renewal negotiations
+
+**Product Notes** (`unstructured_data/product_notes/`):
+- User feedback compilations
+- Implementation progress notes
+- Product upgrade planning documents
 
 ## Application Structure
 
-The home page displays a Health Systems Directory showing example data. You can reference the implementation:
-- API Route: `app/api/health-systems/route.ts`
-- Entity: `db/entities/HealthSystem.ts`
-- Page: `app/page.tsx`
-
-This demonstrates:
-- Creating an API route with MikroORM
-- Fetching data on the client side
-- Displaying data with shadcn/ui components
+The home page displays:
+- **Healthcare Vendors**: Click any vendor to see their products
+- **Health Systems Directory**: Click to see details
 
 ## Working with MikroORM
 
@@ -178,46 +167,19 @@ export async function GET() {
   return NextResponse.json({ data: results });
 }
 ```
-
-## Working with OpenAI
-
-The OpenAI client is pre-configured. Import and use it:
-
-```typescript
-import { getOpenAIClient } from '@/lib/openai';
-
-const openai = getOpenAIClient();
-const completion = await openai.chat.completions.create({
-  model: "gpt-4o-mini",
-  messages: [
-    { role: "user", content: "Your prompt here" }
-  ],
-});
-```
-
-## Tips
-
-- **Database changes**: Always create migrations for schema changes
-- **Type safety**: Use TypeScript types from your entities
-- **Error handling**: Wrap database calls in try-catch blocks
-- **API routes**: Use `NextResponse.json()` for responses
-- **Client components**: Add `'use client'` directive when using React hooks
-- **shadcn/ui**: Components are in `components/ui/`, import and use directly
-
 ## Troubleshooting
 
 ### Database connection issues
 
+If you encounter database connection errors, verify your `.env.local` file has the correct `DATABASE_URL`.
+
+### Reset the database
+
+If you need to start fresh:
+
 ```bash
-docker compose down
-docker compose up -d
-# Wait a few seconds for startup
-npm run db:migrate:up
+npm run db:reset
 ```
-
-### Port 5432 already in use
-
-Stop local PostgreSQL or change the port in `docker-compose.yml`
 
 ### TypeScript errors
 
@@ -226,9 +188,3 @@ npm run build
 ```
 
 This will show all type errors at once.
-
-## Need Help?
-
-- Review existing entity definitions in `db/entities/`
-- Inspect the API route implementation in `app/api/health-systems/route.ts`
-- Check the home page component in `app/page.tsx`

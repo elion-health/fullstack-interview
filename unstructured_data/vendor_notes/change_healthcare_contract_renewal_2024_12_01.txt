@@ -1,0 +1,272 @@
+CONTRACT RENEWAL DISCUSSION - CONFIDENTIAL
+==========================================
+Vendor: Change Healthcare (UnitedHealth Group subsidiary)
+Health System: Mayo Clinic
+Current Contract Value: $1.8M annually
+Contract Expiration: March 31, 2025
+Discussion Date: December 1, 2024
+Attendees: CFO Office, Revenue Cycle Leadership, Procurement
+
+PREPARED BY: Thomas Anderson, VP Revenue Cycle Operations
+
+CURRENT STATE
+-------------
+
+Services Under Contract:
+1. Revenue Cycle Management Platform ($950K/year)
+   - Claims submission and tracking
+   - Denial management workflows
+   - Prior authorization automation
+   - Payment posting
+
+2. Payment Integrity ($485K/year)
+   - Pre-bill claims scrubbing
+   - Post-bill audit
+   - Underpayment detection
+   - Contract modeling
+
+3. Intelligent Healthcare Network - Transaction Fees ($365K/year avg)
+   - Eligibility verification
+   - Claims clearinghouse
+   - ERA/EFT processing
+   - Remittance advice
+
+Contract Performance (Last 12 Months):
+- Claims acceptance rate: 96.2% (target: 95%) ✓
+- Denial rate: 4.1% (industry avg: 6-8%) ✓
+- Days in A/R: 42 days (target: 45 days) ✓
+- Clean claims rate: 94.8% (target: 93%) ✓
+- System uptime: 99.1% (target: 99.5%) ⚠
+
+Overall: Strong performance, meeting or exceeding most KPIs
+
+RENEWAL PROPOSAL FROM CHANGE HEALTHCARE
+---------------------------------------
+
+Proposed New Contract (3 years):
+Year 1: $2.15M (+19.4% increase)
+Year 2: $2.26M (+5% escalation)
+Year 3: $2.38M (+5% escalation)
+
+Total 3-Year Value: $6.79M
+
+Justification for Increase:
+1. "Market rate adjustment" - services underpriced vs. benchmarks
+2. Technology investments (AI-powered denial prediction)
+3. Enhanced cybersecurity measures post-breach
+4. Inflation and labor cost increases
+5. New features included at no additional cost
+
+New Features Included:
+- AI denial prediction (claims at risk flagged pre-submission)
+- Enhanced prior auth automation (30% faster approvals claimed)
+- Patient payment estimation tools
+- Price transparency module (for regulatory compliance)
+- Upgraded reporting dashboards
+
+FINANCIAL ANALYSIS
+------------------
+
+Current Cost: $1.8M/year
+Proposed Cost: $2.15M/year
+Increase: $350K (+19.4%)
+
+ROI Analysis (by Sarah Chen, Finance):
+
+Value Delivered (Annual):
+- Prevented denials: ~$8.5M
+- Recovered underpayments: ~$2.1M
+- Labor cost avoidance: ~$450K (vs. manual processing)
+- Faster cash collection: ~$380K (time value of money)
+Total Value: ~$11.4M
+
+Current Cost: $1.8M
+ROI: 533% (very strong)
+
+Proposed Cost: $2.15M
+Projected ROI: 430% (still excellent, but erosion)
+
+Benchmark Comparison:
+- Surveyed 4 peer academic medical centers
+- Average RCM platform cost: $0.85 per claim submitted
+- Our current rate: $0.78 per claim (below market) ✓
+- Proposed rate: $0.93 per claim (above market) ✗
+
+Conclusion: Current pricing is favorable. Proposed increase pushes us above market rate.
+
+ALTERNATIVE VENDOR ANALYSIS
+---------------------------
+
+We conducted RFI with three competitors in October:
+
+Option A: Waystar (formerly ZirMed)
+- Quoted price: $1.65M/year (8% below current, 23% below Change proposal)
+- Technology: Modern, cloud-native platform
+- Integration: Requires 6-9 month implementation (RISK)
+- References: Strong (talked to Stanford, Duke)
+- Concerns: Smaller company, less mature denial management features
+
+Option B: R1 RCM
+- Quoted price: $2.4M/year (33% above current!)
+- Model: Comprehensive RCM service (not just tech, includes staff augmentation)
+- Not apples-to-apples comparison - different service model
+- Would require RCM staff reductions to justify cost
+- Not pursuing
+
+Option C: Build In-House Solution
+- Epic has native RCM tools we're not fully utilizing
+- IT estimates $1.2M to build, $400K/year to maintain
+- Total 3-year cost: $2.4M ($800K/year equivalent)
+- Timeline: 18-24 months (RISK)
+- Pros: Full control, data ownership, Epic-native
+- Cons: Implementation risk, opportunity cost, may lack advanced features
+
+Switching Cost:
+- Waystar implementation: $250K + 6-9 months disruption
+- In-house build: $1.2M + 18-24 months + organizational change management
+- Staying with Change Healthcare: $0 switching cost (maintain continuity)
+
+CHANGE HEALTHCARE CONCERNS
+--------------------------
+
+1. CYBERSECURITY BREACH (February 2024)
+   - Major ransomware attack disrupted healthcare industry
+   - Mayo Clinic impacted: 3-week delay in claims processing
+   - Cost to us: ~$850K in delayed cash flow + manual workarounds
+   - Change Healthcare response: Adequate but slow
+   - Concerns about future risk
+
+2. UNITEDHEALTH OWNERSHIP
+   - Change Healthcare owned by UnitedHealth Group (our competitor/payer)
+   - Potential conflict of interest
+   - Claims data visibility concerns
+   - Regulatory scrutiny (DOJ investigating UHG vertical integration)
+
+3. SERVICE DEGRADATION POST-BREACH
+   - Support response times increased from 2 hours → 6 hours avg
+   - System uptime dropped from 99.7% → 99.1%
+   - Some features still not fully restored
+   - Staff confidence in platform has declined
+
+4. PRICE INCREASE TIMING
+   - 19% increase feels opportunistic given our lack of easy alternatives
+   - We're locked in by integration complexity
+   - Market power imbalance
+
+NEGOTIATION STRATEGY
+--------------------
+
+Our Position:
+- Valued partner, strong performance, want to continue relationship
+- 19% increase is not acceptable given breach impact and market benchmarks
+- Willing to commit to 3-year term for pricing stability
+- Need service level improvements and guarantees
+
+Target Outcome:
+Year 1: $1.95M (+8.3% vs. current) - "market rate adjustment" acceptable
+Year 2: $2.03M (+4% escalation)
+Year 3: $2.11M (+4% escalation)
+Total 3-Year: $6.09M (save $700K vs. their proposal)
+
+Required Contractual Improvements:
+1. Uptime SLA: 99.5% with financial penalties for breach
+2. Support response time: <2 hours for critical issues (contractual requirement)
+3. Business continuity: Demonstrated disaster recovery capability quarterly
+4. Cybersecurity: Annual third-party security audit with results shared
+5. Data ownership: Clear language that our data cannot be used for UHG competitive advantage
+6. Termination: 90-day out clause if acquired or major service degradation
+
+Enhanced Features Must Include:
+- AI denial prediction (no extra cost)
+- Prior auth automation enhancements (no extra cost)
+- Price transparency module (mandatory for CMS compliance)
+- Dedicated account team with escalation path
+
+Walk-Away Position:
+If Change Healthcare won't negotiate below $2.0M Year 1, we pursue Waystar alternative
+- Risk: Implementation disruption
+- Mitigation: 9-month implementation runway before current contract expires
+
+RECOMMENDATION
+--------------
+
+Recommend: Negotiate with Change Healthcare, with Waystar as backup
+
+Rationale:
+1. Switching costs and risks are high
+2. Change Healthcare performance (pre-breach) was strong
+3. Integration complexity with Epic makes switching painful
+4. But 19% increase is not justified - push back hard
+5. Use Waystar quote as leverage
+
+Negotiation Timeline:
+- Dec 5: Counter-proposal to Change Healthcare ($1.95M target)
+- Dec 20: Waystar detailed proposal due (backup option)
+- Jan 15: Final decision deadline
+- Jan 31: Contract signature deadline
+- Feb-Mar: Transition period if switching vendors
+
+Approval Required:
+- CFO: Budget approval for negotiated amount
+- CIO: Technical assessment of migration risk if switching
+- Legal: Contract terms review (especially data ownership, termination clauses)
+
+RISK ASSESSMENT
+---------------
+
+Risk: Change Healthcare refuses to negotiate meaningfully
+Likelihood: Medium | Impact: Medium
+Response: Move to Waystar, accept implementation risk
+
+Risk: Another Change Healthcare breach during contract term
+Likelihood: Low-Medium | Impact: High
+Response: Strong contractual protections, disaster recovery requirements
+
+Risk: Waystar implementation fails or over-runs timeline
+Likelihood: Low-Medium | Impact: High
+Response: Only pursue if Change Healthcare negotiation fails; extensive due diligence
+
+Risk: In-house Epic solution underperforms
+Likelihood: Medium | Impact: Medium
+Response: Not pursuing this option for now; revisit in 2-3 years
+
+NEXT ACTIONS
+------------
+
+Week of Dec 2:
+[X] Finalize counter-proposal (Thomas Anderson)
+[X] Get CFO approval for negotiation parameters (Sarah Chen)
+[ ] Schedule negotiation call with Change Healthcare (Dec 5)
+
+Week of Dec 9:
+[ ] Present Waystar detailed proposal to leadership
+[ ] CIO technical assessment of migration complexity
+[ ] Legal review of Change Healthcare contract redlines
+
+Week of Dec 16:
+[ ] Final negotiation with Change Healthcare
+[ ] Go/no-go decision on vendor switch
+[ ] Board briefing on RCM strategy
+
+By Jan 15:
+[ ] Contract signature
+[ ] Implementation planning (if switching vendors)
+
+---
+
+CONTACTS:
+
+Change Healthcare:
+- Account Executive: Michelle Roberts (michelle.roberts@changehealthcare.com)
+- VP Customer Success: David Park (david.park@changehealthcare.com)
+- Contract Negotiation: procurement@changehealthcare.com
+
+Waystar:
+- Sales Lead: Jennifer Wu (jwu@waystar.com)
+- Implementation Lead: Mark Stevens (mstevens@waystar.com)
+
+Mayo Clinic:
+- CFO Office: Sarah Chen (chen.sarah@mayo.edu)
+- Revenue Cycle: Thomas Anderson (anderson.thomas@mayo.edu)
+- Procurement: Lisa Johnson (johnson.lisa@mayo.edu)
+- Legal: David Martinez (martinez.david@mayo.edu)

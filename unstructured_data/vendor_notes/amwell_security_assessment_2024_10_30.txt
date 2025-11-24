@@ -1,0 +1,273 @@
+SECURITY & COMPLIANCE ASSESSMENT
+==================================
+Vendor: Amwell
+Product: Amwell Telehealth Platform + Converge Integration
+Assessed by: InfoSec Team, UCSF Medical Center
+Lead Assessor: David Park, CISO
+Date: October 30, 2024
+Assessment Type: Pre-Procurement Due Diligence
+
+OVERALL RISK RATING: MEDIUM-LOW (Acceptable for procurement)
+
+EXECUTIVE SUMMARY
+-----------------
+Amwell demonstrates strong security posture appropriate for healthcare telehealth services. HIPAA compliance is well-documented and regularly audited. Primary concerns relate to third-party subprocessor management and incident response coordination. Recommend proceeding with contract, subject to specific security requirements in BAA.
+
+DETAILED FINDINGS
+-----------------
+
+1. COMPLIANCE & CERTIFICATIONS ✓
+
+Current Valid Certifications:
+- HIPAA compliant (annual audits by Coalfire)
+- SOC 2 Type II (most recent: July 2024)
+- HITRUST CSF Certified (renewal: March 2024)
+- ISO 27001:2013 (certificate expires: June 2025)
+- FedRAMP Moderate ATO (for government contracts)
+
+State-Specific:
+- CCPA compliant (California)
+- SHIELD Act compliant (New York)
+- Breach notification procedures meet state requirements
+
+Assessment: Strong compliance posture. Recommend requiring ISO 27001:2022 upgrade in next renewal cycle.
+
+2. DATA SECURITY ARCHITECTURE ✓
+
+Encryption:
+- Data at rest: AES-256 encryption for all PHI in databases
+- Data in transit: TLS 1.3 for all API communications
+- Video streams: SRTP (Secure Real-time Transport Protocol)
+- Encryption key management: AWS KMS with automated rotation
+
+Network Security:
+- AWS-hosted infrastructure (us-east-1 primary, us-west-2 DR)
+- Web Application Firewall (WAF) with OWASP ruleset
+- DDoS protection via AWS Shield Advanced
+- Network segmentation between production, staging, dev environments
+
+Access Controls:
+- Role-based access control (RBAC) with least privilege principle
+- Multi-factor authentication required for all admin access
+- SSO integration supported (SAML 2.0)
+- Privileged access management via CyberArk
+
+Assessment: Modern security architecture aligned with industry best practices.
+
+3. EPIC INTEGRATION SECURITY ⚠
+
+Integration Method: Converge module embedded in Epic Hyperspace
+Data Flow: Epic → Amwell APIs → Video session → Clinical notes back to Epic
+
+Security Concerns Identified:
+a) Patient Matching: Uses MRN + DOB + Name for identity verification
+   - Risk: Potential for false matches if data entry errors
+   - Mitigation: Amwell implements fuzzy matching with 98%+ confidence threshold
+   - Recommendation: Add photo ID verification for first visit
+
+b) API Authentication: OAuth 2.0 with JWT tokens
+   - Token expiration: 1 hour (reasonable)
+   - Refresh token rotation: Implemented
+   - Concern: Epic service account credentials stored in Amwell system
+   - Mitigation: Amwell uses HashiCorp Vault for credential management
+   - Recommendation: Implement quarterly credential rotation
+
+c) Clinical Data Access: Amwell clinicians can query Epic for patient history
+   - Scope: Limited to demographics, medications, allergies, recent visits
+   - Concern: Broader access than strictly necessary for virtual visit
+   - Mitigation: Access logged and auditable
+   - Recommendation: Negotiate minimum necessary data access in BAA
+
+Assessment: Integration security is adequate but requires specific contractual controls.
+
+4. BUSINESS CONTINUITY & DISASTER RECOVERY ✓
+
+RTO (Recovery Time Objective): 4 hours
+RPO (Recovery Point Objective): 1 hour
+
+Infrastructure:
+- Multi-region deployment (primary + DR site)
+- Automated failover for critical services
+- Database replication with <5 minute lag
+- Regular disaster recovery testing (quarterly)
+
+Recent Incidents:
+- Sept 2023: 2-hour outage due to AWS S3 service disruption (external)
+- Feb 2024: 45-minute degradation during routine maintenance (planned)
+- Overall uptime 2024: 99.96%
+
+Assessment: Strong BC/DR capabilities. Uptime exceeds industry standards.
+
+5. INCIDENT RESPONSE & BREACH NOTIFICATION ⚠
+
+Incident Response Plan: Documented and includes healthcare-specific scenarios
+
+Notification Timelines:
+- Internal detection to customer notification: 24-48 hours
+- Breach notification to affected individuals: As required by law (typically 60 days)
+
+Concern: 24-48 hour notification window is longer than our policy (12 hours)
+
+Historical Breaches:
+- 2022: Unauthorized access to admin portal (31 patient records)
+  Response: Patched vulnerability, reset credentials, notified patients
+  Root cause: Phishing attack on employee account
+
+- 2021: Misconfigured S3 bucket exposed log files (no PHI, but PII present)
+  Response: Bucket secured within 2 hours, audit of all storage configs
+
+Assessment: Incident response capability is adequate. Require faster notification in contract.
+
+6. THIRD-PARTY RISK MANAGEMENT ⚠
+
+Subprocessors Used by Amwell:
+- AWS (hosting infrastructure)
+- Twilio (SMS notifications)
+- SendGrid (email communications)
+- Stripe (payment processing - not applicable to our use case)
+- Sentry (error logging and monitoring)
+
+Concerns:
+a) Subprocessor list not easily accessible - had to request via legal
+b) No automatic notification when new subprocessors added
+c) Some subprocessors (Sentry) have access to error logs that may contain PHI snippets
+
+Recommendations:
+- Require 30-day advance notice for new subprocessor additions
+- Annual security reviews of high-risk subprocessors
+- Data masking in error logs to prevent PHI exposure
+
+Assessment: Subprocessor management needs improvement. Add specific requirements to contract.
+
+7. PRIVACY & DATA GOVERNANCE ✓
+
+Data Ownership: Customer retains all data ownership (confirmed in MSA)
+Data Deletion: 30-day retention after contract termination, then secure deletion
+Data Export: Full data export available via API or manual process
+
+Patient Consent:
+- Electronic consent captured before first video visit
+- Consent stored with audit trail
+- Patients can revoke consent and request data deletion (CCPA compliance)
+
+Marketing/Secondary Use:
+- Amwell does NOT use PHI for marketing or sell data (confirmed in writing)
+- De-identified data used for aggregate analytics and product improvement
+- Opt-out available for research use of de-identified data
+
+Assessment: Privacy practices align with healthcare standards.
+
+8. VENDOR STABILITY & VIABILITY ✓
+
+Financial Health:
+- Public company (NYSE: AMWL)
+- Market cap: ~$250M (as of Oct 2024)
+- Revenue: $285M (2023)
+- Note: Stock price down 70% from 2021 peak (post-pandemic correction)
+
+Concerns:
+- Telehealth market correction has impacted valuation
+- Some competitors have stronger financials (Teladoc larger)
+
+Mitigations:
+- Company remains profitable and well-capitalized
+- Strong customer base including major health systems
+- Contract includes source code escrow clause
+
+Assessment: Medium financial risk, but manageable with contract protections.
+
+9. PENETRATION TESTING & VULNERABILITY MANAGEMENT ✓
+
+External Penetration Testing:
+- Annual third-party pentests by NCC Group
+- Most recent: August 2024
+- All critical/high findings remediated within 30 days
+
+Vulnerability Scanning:
+- Weekly automated scans via Qualys
+- Critical vulnerabilities patched within 24 hours
+- High severity within 7 days
+- Public disclosure via responsible disclosure program
+
+Bug Bounty Program:
+- HackerOne-hosted program since 2022
+- Paid bounties ($500-$10,000 based on severity)
+- 127 valid submissions to date
+
+Assessment: Proactive security testing approach. Better than most healthcare vendors.
+
+10. AUDIT & MONITORING ✓
+
+Logging:
+- All API calls logged with user, timestamp, data accessed
+- Video session metadata logged (not video content itself)
+- Login attempts and authentication events logged
+- Logs retained for 2 years
+
+SIEM:
+- Splunk Enterprise for security event monitoring
+- Real-time alerting for suspicious activity
+- Integration with threat intelligence feeds
+
+Customer Access:
+- Customers can request audit logs for their data
+- Self-service audit dashboard in admin portal
+- API available for programmatic log retrieval
+
+Assessment: Comprehensive logging and monitoring capabilities.
+
+SECURITY REQUIREMENTS FOR CONTRACT
+-----------------------------------
+
+Must-Have Requirements:
+1. Breach notification within 12 hours of detection (not 24-48 hours)
+2. Annual third-party security assessment with results shared
+3. 30-day notice before adding new subprocessors
+4. Quarterly access review and recertification
+5. Right to conduct security audit with 30-day notice
+6. Source code escrow updated quarterly
+7. Minimum necessary data access principle for Epic integration
+8. Data deletion certification within 30 days of contract termination
+
+Should-Have Requirements:
+9. Quarterly vulnerability scan results sharing
+10. Annual disaster recovery test with our participation
+11. Security training attestation for all Amwell clinicians treating our patients
+12. Dedicated security contact for incident coordination
+
+RISK ACCEPTANCE
+----------------
+
+The following risks are acceptable with contractual mitigations:
+✓ Epic integration data access scope (with logging and audit rights)
+✓ Subprocessor usage (with notification requirements)
+✓ Incident notification timeline (with contractual improvement)
+✓ Financial viability concerns (with source code escrow)
+
+RECOMMENDATION
+--------------
+
+APPROVED for procurement, subject to:
+1. Security requirements listed above incorporated into Master Service Agreement
+2. Business Associate Agreement includes specific breach notification timeline
+3. Annual security review requirement documented
+4. Contract includes security performance SLAs
+
+Security team will participate in:
+- Contract negotiation for security terms
+- Technical integration review before go-live
+- Quarterly security review meetings
+- Incident response coordination planning
+
+SIGN-OFF
+--------
+
+Assessed by: David Park, CISO, UCSF Medical Center
+Date: October 30, 2024
+
+Reviewed by: Rebecca Wong, Chief Privacy Officer
+Date: October 31, 2024
+
+Approved for Procurement: Yes, with conditions noted above
+
+Next Review: October 2025 (annual reassessment)

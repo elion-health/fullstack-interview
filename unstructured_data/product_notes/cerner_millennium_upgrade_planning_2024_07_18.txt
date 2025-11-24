@@ -1,0 +1,310 @@
+MILLENNIUM PLATFORM UPGRADE - PLANNING NOTES
+============================================
+Health System: UCSF Medical Center
+Current Version: Millennium 2022.11
+Target Version: Millennium 2023.5 (Oracle Health rebrand)
+Planning Lead: Jennifer Martinez, Clinical Informatics Director
+Date: July 18, 2024
+
+UPGRADE OVERVIEW
+----------------
+
+Release: Millennium 2023.5 (Oracle Health)
+Release Date: October 2023
+Our Target Go-Live: February 2025 (6 months away)
+
+Why Upgrade:
+1. Current version out of support in March 2025
+2. New features needed for regulatory compliance (eCQMs, TEFCA)
+3. Performance improvements (20-30% faster according to Oracle)
+4. Security patches and vulnerability fixes
+5. Oracle integration features (cloud migration path)
+
+Scale of Effort: LARGE
+- Estimated hours: 4,500 hours (internal team + Oracle consultants)
+- Cost: $850K (consulting + testing + overtime + downtime)
+- Timeline: 8 months (Aug 2024 - Feb 2025)
+- Risk: HIGH (core clinical system, 24/7 operations)
+
+KEY FEATURES IN 2023.5
+----------------------
+
+1. PowerChart Enhancements
+   - New medication reconciliation workflow (addresses current pain point!)
+   - Improved mobile responsiveness on tablets
+   - Customizable preference sets per provider
+   - Better integration with CPOE for order modifications
+
+2. Population Health & eCQMs
+   - Enhanced quality measure reporting (required for CMS)
+   - FHIR R4 support (current version only supports R3)
+   - Bulk data export API for payer data sharing
+   - This is main driver for upgrade - compliance deadline is June 2025
+
+3. Security & Infrastructure
+   - TLS 1.3 support (current 1.2 will be deprecated)
+   - Enhanced audit logging for HIPAA
+   - Database performance optimizations
+   - Support for Oracle Cloud Infrastructure (future migration)
+
+4. Patient Portal (HealtheLife)
+   - Modernized UI (finally! Current portal looks dated)
+   - Mobile app improvements
+   - Video visit integration
+   - Patient-generated health data ingestion
+
+5. Interoperability
+   - TEFCA QHIN participation support
+   - Carequality integration enhancements
+   - CommonWell link updates
+   - Prior auth automation workflows
+
+TECHNICAL CHANGES
+-----------------
+
+Database:
+- Oracle DB upgrade: 19c → 21c (required)
+- Database size expected to grow 15-20% (add 800GB storage)
+- New indexes will be created (performance improvement but longer upgrade window)
+
+Application Servers:
+- .NET Framework: 4.8 → .NET 6.0 (major change)
+- Windows Server: 2019 → 2022
+- IIS: 10 → 10.5
+- Need to rebuild all custom integrations that use .NET
+
+Infrastructure Requirements:
+- 6 additional application servers for performance (CAPEX: $180K)
+- Storage expansion (CAPEX: $95K)
+- Network bandwidth upgrades for new FHIR APIs (CAPEX: $40K)
+- Total infrastructure cost: $315K (not in original budget - need CFO approval)
+
+Custom Code Impact:
+- 47 custom scripts and integrations identified
+- 23 will break in new version (breaking changes in APIs)
+- 12 can be replaced by native features (opportunity to reduce tech debt!)
+- 12 need to be rewritten
+
+Integration Testing Scope:
+- Epic integration (for research patients): CRITICAL - must test thoroughly
+- Lab interfaces (LabCorp, Quest): HIGH PRIORITY
+- Radiology (PACS): HIGH PRIORITY
+- Pharmacy (Omnicell, Pyxis): CRITICAL
+- Revenue cycle (Epic Resolute): HIGH PRIORITY
+- Single sign-on (Okta): CRITICAL
+- Reporting tools (Tableau): MEDIUM
+- Quality registries (AHA, STS, others): MEDIUM
+
+TIMELINE & MILESTONES
+---------------------
+
+Phase 1: Planning & Preparation (Aug-Sept 2024) - 2 months
+- Detailed impact analysis [Aug 1-15]
+- Test environment build [Aug 15-30]
+- Custom code inventory and remediation plan [Sept 1-15]
+- Training materials development [Sept 15-30]
+
+Phase 2: Development & Testing (Oct-Dec 2024) - 3 months
+- Oracle installs upgrade in TEST environment [Oct 1-5]
+- Internal testing - smoke tests [Oct 7-11]
+- Rebuild custom integrations [Oct 14 - Nov 15]
+- Integration testing [Nov 18 - Dec 20]
+- User acceptance testing [Dec 2-20]
+
+Holiday Freeze: Dec 20 - Jan 6 (no testing activities)
+
+Phase 3: Validation & Training (Jan 2025) - 1 month
+- Production-like validation environment [Jan 6-10]
+- End-user training (physicians, nurses, ancillary staff) [Jan 13-31]
+- Super-user training [Jan 6-10]
+- Downtime planning and dry runs [Jan 20-24]
+
+Phase 4: Go-Live (Feb 2025) - 1 month
+- Final production upgrade: Feb 8-9, 2025 (Saturday-Sunday)
+- Downtime: 18 hours (Sat 6am - Sun 12pm)
+- Hypercare support: Feb 10-23 (2 weeks, 24/7 coverage)
+- Stabilization: Feb 24 - Mar 9
+
+Post Go-Live:
+- Lessons learned [Mar 10]
+- Optimization opportunities [ongoing]
+
+RISKS & CONCERNS
+----------------
+
+1. DOWNTIME DURATION - HIGH RISK
+   Planned: 18 hours
+   Risk: Database upgrade could take longer than estimated
+   Impact: Clinical operations severely impacted, potential patient safety issues
+   Mitigation:
+   - Dry run upgrade in test environment to validate timing
+   - Downtime procedures for paper-based workflows
+   - Rollback plan if upgrade exceeds 24 hours
+   - Schedule during lowest census period (February)
+
+2. CUSTOM CODE BREAKS - HIGH RISK
+   23 integrations will break, 12 need rewrites
+   Impact: Workflows disrupted, staff workarounds, potential data loss
+   Mitigation:
+   - Start custom code work early (October)
+   - Parallel testing in TEST environment
+   - Manual workarounds documented and tested
+   - Extended hypercare support for integration issues
+
+3. USER ADOPTION OF NEW WORKFLOWS - MEDIUM RISK
+   Med rec workflow changing significantly
+   Impact: Productivity decrease, medication errors if done incorrectly
+   Mitigation:
+   - Early physician champion engagement
+   - Hands-on training (not just videos)
+   - Super-users embedded in clinical areas during go-live
+   - Quick reference guides at workstations
+
+4. INFRASTRUCTURE COST OVERRUNS - MEDIUM RISK
+   $315K not in budget
+   Impact: Project delay if funding not approved
+   Mitigation:
+   - Business case submitted to CFO (July 15)
+   - Alternative: Phased infrastructure upgrades (riskier)
+   - Cost avoidance: Oracle Cloud migration postponed saves $200K this year
+
+5. EPIC INTEGRATION FAILURE - CRITICAL RISK
+   Small number of research patients use both Cerner and Epic
+   Integration is fragile and poorly documented
+   Impact: Research disruption, patient safety concern if data not synced
+   Mitigation:
+   - Dedicated testing window with Epic team
+   - Epic integration specialist from Oracle assigned
+   - Contingency: Manual data entry process during outage
+
+6. VENDOR DELAYS - MEDIUM RISK
+   Oracle (Cerner) has history of delayed support responses
+   Impact: Testing delays, go-live postponement
+   Mitigation:
+   - Premium support contract ($45K) for dedicated engineer
+   - Weekly check-ins with Oracle project manager
+   - Escalation path to Oracle executive sponsor
+
+STAFFING PLAN
+-------------
+
+Internal Team (backfill required):
+- Jennifer Martinez (Project Lead): 50% allocation
+- 3 Clinical Informaticists: 75% allocation each
+- 2 Integration Engineers: 100% allocation
+- 1 DBA: 50% allocation
+- 4 Clinical Super-Users (physician, RN, pharmacy, lab): 25% each
+- QA Team: 2 FTE
+- Training Team: 3 FTE (ramp up Dec-Jan)
+
+Backfill Cost: $280K (temps and overtime)
+
+Oracle Consultants:
+- 2 Technical Consultants: Oct-Feb (full time)
+- 1 Clinical Workflow Consultant: Dec-Jan (part time)
+- Cost: $450K (included in $850K total project cost)
+
+Hypercare Support (Go-Live):
+- 24/7 command center: Feb 10-16 (1 week)
+- Extended hours support: Feb 17-23 (7am-11pm)
+- On-call support: Feb 24 - Mar 9
+- Staffing: 15-20 people in rotation
+
+COMMUNICATION PLAN
+------------------
+
+Executive Leadership:
+- Monthly steering committee (CIO, CMO, CNO, CFO)
+- Go/no-go decision meeting: Feb 1, 2025
+
+Medical Staff:
+- Department chair updates: Monthly
+- Physician town halls: Dec 15, Jan 15, Feb 5
+- Email updates: Bi-weekly starting Dec 1
+
+Clinical Staff:
+- Nurse manager meetings: Monthly starting Nov
+- Staff newsletters: Weekly starting Jan
+- Unit-based training: Jan 13-31
+
+IT Department:
+- Weekly project team meetings
+- Daily standups during testing phase
+- All-hands project briefing: Jan 10
+
+Patients:
+- Website notice: 2 weeks before downtime
+- Appointment reminder updates: 1 week before
+- On-site signage: Feb 7-9
+
+BUDGET SUMMARY
+--------------
+
+Professional Services (Oracle): $450K
+Infrastructure (servers, storage, network): $315K
+Internal Staffing (backfill, OT): $280K
+Premium Support: $45K
+Training Materials: $25K
+Contingency (10%): $112K
+---------------------------------
+Total Project Cost: $1,227K
+
+Original Budget: $850K
+Funding Gap: $377K - NEED CFO APPROVAL
+
+Cost Avoidance:
+- Delayed Oracle Cloud migration: $200K (this year)
+- Reduced custom code maintenance: $30K/year ongoing
+- Improved performance reduces server needs: $50K/year ongoing
+
+ROI:
+- Hard to quantify but compliance-driven (must upgrade)
+- Productivity improvements estimated at 5-10 minutes per clinician per day
+- Reduced downtime from performance issues: $100K/year
+
+DECISION POINTS
+---------------
+
+DECISION NEEDED BY JULY 30:
+→ Approve additional $377K in funding OR descope infrastructure improvements
+   (descoping increases risk significantly)
+
+DECISION NEEDED BY AUG 15:
+→ Approve Feb 8-9 downtime window OR select alternative date
+   (later dates push against compliance deadline)
+
+DECISION NEEDED BY OCT 1:
+→ Confirm custom integration rebuild scope OR accept reduced functionality
+   (some integrations may not be ready, require manual workarounds)
+
+NEXT STEPS
+----------
+
+[X] Submit budget amendment to CFO - Due: July 20 (DONE)
+[ ] Finalize project charter and get exec sign-off - Due: July 25
+[ ] Kick off with Oracle project team - Due: Aug 1
+[ ] Complete environment build - Due: Aug 30
+[ ] Physician champion recruitment - Due: Aug 15
+[ ] Detailed training plan - Due: Sept 30
+
+CONTACTS
+--------
+
+Oracle Health Team:
+- Project Manager: Susan Li (susan.li@oracle.com)
+- Technical Lead: Robert Chang (robert.chang@oracle.com)
+- Customer Success Manager: Patricia Nguyen (patricia.nguyen@oracle.com)
+
+UCSF Team:
+- Project Lead: Jennifer Martinez (jennifer.martinez@ucsf.edu)
+- CIO: Dr. James Patterson (james.patterson@ucsf.edu)
+- Clinical Informaticist: Dr. Sarah Kim (sarah.kim@ucsf.edu)
+
+APPENDICES (separate documents)
+--------------------------------
+- Detailed technical specifications
+- Training curriculum outline
+- Communication templates
+- Downtime procedures
+- Rollback plan
+- Custom code inventory spreadsheet

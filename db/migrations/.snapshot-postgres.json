@@ -254,14 +254,53 @@
     },
     {
       "columns": {
-        "health_system_id": {
-          "name": "health_system_id",
-          "type": "int",
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": false,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "integer"
+          "length": 255,
+          "mappedType": "string"
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "text"
+        },
+        "category": {
+          "name": "category",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "version": {
+          "name": "version",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
         },
         "vendor_id": {
           "name": "vendor_id",
@@ -271,18 +310,37 @@
           "primary": false,
           "nullable": false,
           "mappedType": "integer"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
         }
       },
-      "name": "health_system_vendors",
+      "name": "product",
       "schema": "public",
       "indexes": [
         {
-          "keyName": "health_system_vendors_pkey",
+          "keyName": "product_pkey",
           "columnNames": [
-            "health_system_id",
-            "vendor_id"
+            "id"
           ],
-          "composite": true,
+          "composite": false,
           "constraint": true,
           "primary": true,
           "unique": true
@@ -290,30 +348,16 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "health_system_vendors_health_system_id_foreign": {
-          "constraintName": "health_system_vendors_health_system_id_foreign",
-          "columnNames": [
-            "health_system_id"
-          ],
-          "localTableName": "public.health_system_vendors",
-          "referencedColumnNames": [
-            "id"
-          ],
-          "referencedTableName": "public.health_system",
-          "deleteRule": "cascade",
-          "updateRule": "cascade"
-        },
-        "health_system_vendors_vendor_id_foreign": {
-          "constraintName": "health_system_vendors_vendor_id_foreign",
+        "product_vendor_id_foreign": {
+          "constraintName": "product_vendor_id_foreign",
           "columnNames": [
             "vendor_id"
           ],
-          "localTableName": "public.health_system_vendors",
+          "localTableName": "public.product",
           "referencedColumnNames": [
             "id"
           ],
           "referencedTableName": "public.vendor",
-          "deleteRule": "cascade",
           "updateRule": "cascade"
         }
       },

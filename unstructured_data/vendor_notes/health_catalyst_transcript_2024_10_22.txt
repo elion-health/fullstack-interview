@@ -1,0 +1,98 @@
+VENDOR MEETING TRANSCRIPT
+=========================
+Date: October 22, 2024
+Vendor: Health Catalyst
+Meeting Type: Quarterly Business Review
+Location: Virtual (Zoom)
+Attendees:
+  - Cleveland Clinic: Michael Chen (IT Director), Dr. Amanda Rodriguez (Chief Analytics Officer)
+  - Health Catalyst: James Wu (VP Customer Success), Priya Patel (Senior Data Scientist)
+
+---
+
+[00:02:15]
+James Wu: Thanks for joining today, Michael and Amanda. I wanted to start by reviewing our engagement metrics from Q3. We're seeing really strong adoption of the DOS platform across your organization.
+
+Michael Chen: Yes, we've been pleased with the uptake. Our data science team has really embraced Population Builder. They're using it daily now.
+
+[00:05:30]
+Amanda Rodriguez: I want to jump in here - we've had some challenges with data latency. Some of our real-time dashboards are showing delays of 4-6 hours. That's problematic for our sepsis surveillance program.
+
+Priya Patel: Understood. We've actually been working on optimization for real-time use cases. The latency you're experiencing is likely related to the batch ETL process from your Epic system. We can move you to our streaming ingestion pipeline.
+
+Michael Chen: What's the complexity of that migration?
+
+Priya Patel: It's a 2-3 week effort on our side. We'd need about 40 hours of your IT team's time to reconfigure the Epic integration points and update the data flow architecture.
+
+[00:12:45]
+James Wu: Let me share my screen - I want to show you our new Healthcare.AI capabilities that launched last month. This is getting really exciting adoption from our other academic medical center customers.
+
+Amanda Rodriguez: Yes, I've been reading about this. What's the actual accuracy on the readmission prediction models?
+
+Priya Patel: Our pre-built 30-day readmission model is showing 84% accuracy across our customer base. But here's what's interesting - when we fine-tune it on your specific patient population, we're seeing accuracy improve to 89-91%.
+
+Amanda Rodriguez: That's impressive. What features is it using?
+
+Priya Patel: It's a gradient boosting model using about 200 features - diagnosis codes, prior utilization, social determinants from your ADT feed, medication compliance scores, and some NLP-derived features from clinical notes.
+
+Michael Chen: Wait, NLP from clinical notes? Are we extracting text from Epic?
+
+Priya Patel: Yes, we're pulling the discharge summaries and progress notes. All processing happens in our HIPAA-compliant environment. The NLP extracts things like symptom severity, patient complexity indicators, family support mentions.
+
+[00:18:20]
+Amanda Rodriguez: Okay, I'm interested but we need to do a thorough privacy review. Our legal team has been very cautious about any AI processing of clinical notes, especially with the new state privacy laws.
+
+James Wu: Completely understand. We have a whole privacy assessment package we can share. We're already doing this with eight other health systems in Massachusetts, so we're well-versed in the compliance requirements.
+
+[00:22:10]
+Michael Chen: Let's talk pricing. What's the cost delta to add Healthcare.AI to our current contract?
+
+James Wu: The AI platform is an additional $180K annually for your patient volume - you're at about 850,000 patient encounters per year. That includes the pre-built models, custom model development support, and ongoing model monitoring and retraining.
+
+Michael Chen: That's higher than I expected. What's included in the "custom model development support"?
+
+James Wu: You get 200 hours per year of data scientist time to build custom models for your specific use cases. Most customers use this for things like no-show prediction, surgical complication risk, ED utilization forecasting.
+
+Amanda Rodriguez: Can we start with a pilot? I'd want to validate the ROI before committing to the full annual contract.
+
+[00:28:45]
+James Wu: Absolutely. We can do a 6-month pilot at $90K. That gives you full access to the platform and 100 hours of data scientist support. If you convert to the annual contract, we'll credit the pilot cost.
+
+Michael Chen: That works. Let's structure it around our top two use cases - readmission prediction and OR scheduling optimization. Can you support both in a pilot?
+
+Priya Patel: Definitely. We actually have a pre-built OR scheduling model that we can customize to your block scheduling approach and surgeon preferences. That one typically shows ROI within 3-4 months through better utilization.
+
+[00:35:15]
+Amanda Rodriguez: What about explainability? Our clinicians won't trust a black box model. How do we explain predictions to the care teams?
+
+Priya Patel: Great question. We use SHAP values to provide feature importance for every prediction. The dashboard shows clinicians exactly which factors drove the risk score for each patient. We also provide confidence intervals.
+
+Amanda Rodriguez: Good. That's critical for adoption.
+
+[00:42:30]
+James Wu: Let me also mention - we're releasing a new patient timeline visualization next month. It creates an interactive view of the patient journey with all the model predictions overlaid. Really helps with care coordination.
+
+Michael Chen: Send us the demo. I'd like our care management team to see that.
+
+[00:48:00]
+James Wu: Okay, let me summarize action items. We'll send over the Healthcare.AI pilot proposal by end of week, along with the privacy assessment documents. Priya will schedule time with your team to discuss the data latency fixes. And I'll get you access to the patient timeline demo.
+
+Michael Chen: Sounds good. And let's get the streaming ingestion migration on the calendar for November if possible.
+
+Amanda Rodriguez: One more thing - can you send me the validation metrics for the readmission model? I want to review the ROC curves and precision-recall before I present this to our executive team.
+
+Priya Patel: Absolutely. I'll send you the full model card with all performance metrics broken down by patient demographics.
+
+[00:52:10]
+James Wu: Perfect. Thanks for your time today. Let's reconnect in two weeks to review the pilot proposal.
+
+[END TRANSCRIPT]
+
+---
+
+FOLLOW-UP REQUIRED:
+- Healthcare.AI pilot proposal (James Wu) - Due: Oct 26
+- Privacy assessment package (James Wu) - Due: Oct 26
+- Schedule data latency fix planning session (Priya Patel) - This week
+- Send readmission model validation metrics (Priya Patel) - Due: Oct 24
+- Patient timeline demo access (James Wu) - Due: Oct 30

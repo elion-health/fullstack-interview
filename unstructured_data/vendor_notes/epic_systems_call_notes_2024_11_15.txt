@@ -1,0 +1,72 @@
+VENDOR CALL NOTES
+=================
+Date: November 15, 2024
+Vendor: Epic Systems
+Attendees: Sarah Johnson (MGH), Mark Peterson (Epic Account Manager), Lisa Chen (Epic Solutions Architect)
+Duration: 60 minutes
+
+SUMMARY
+-------
+Discussed upcoming EpicCare upgrade to 2024.3 release and new AI-powered documentation features. Epic is investing heavily in ambient listening technology to reduce physician documentation burden.
+
+KEY DISCUSSION POINTS
+---------------------
+
+1. EpicCare 2024.3 Release Timeline
+   - Planned release: March 2025
+   - 6-week implementation window required
+   - Includes new ambient documentation assistant
+   - Cost: $280K for implementation + training
+
+2. AI Documentation Features
+   - Integration with ambient listening tech (Dragon Ambient eXperience)
+   - Real-time clinical note generation during patient visits
+   - Requires dedicated recording devices in exam rooms
+   - Early adopters reporting 50% reduction in after-hours charting
+   - Privacy controls and patient consent workflows built-in
+
+3. MyChart Enhancements
+   - New patient messaging AI that can triage and auto-respond to common questions
+   - Appointment self-scheduling expansion to specialty clinics
+   - Integration with Apple Health and Google Fit for remote monitoring
+   - Patient portal usage has increased 35% year-over-year
+
+4. Interoperability Updates
+   - TEFCA participation status: Epic joining as QHIN in Q1 2025
+   - Enhanced FHIR APIs for third-party app integration
+   - New pre-built integrations with major telehealth vendors
+   - Claims data exchange improvements for value-based care
+
+5. Pricing Discussion
+   - Current annual support: $1.2M
+   - Proposed increase: 4.5% ($54K increase)
+   - Justification: Inflation + new AI features included at no extra cost
+   - Sarah pushes back - wants to see ROI metrics before committing
+
+TECHNICAL NOTES
+---------------
+- Database upgrade path: Need to allocate 72-hour maintenance window
+- Hyperspace client updates required on all workstations (~2,500 devices)
+- New server requirements: Additional 500GB storage for AI model hosting
+- Network bandwidth: Ambient listening requires 2Mbps per exam room
+
+ACTION ITEMS
+------------
+[ ] Sarah: Get executive approval for budget increase
+[ ] Mark: Provide case studies from similar-sized academic medical centers
+[ ] Lisa: Schedule technical deep-dive on ambient documentation security
+[ ] Sarah: Coordinate with IT for infrastructure assessment
+[ ] Mark: Send detailed pricing breakdown by module
+
+CONCERNS/RISKS
+--------------
+- Physician adoption of ambient tech may be slow - need strong change management
+- Recording in exam rooms raises privacy concerns - legal review needed
+- Infrastructure upgrades may exceed budget
+- Training timeline conflicts with Q1 residency onboarding
+
+NEXT STEPS
+----------
+- Follow-up call scheduled for December 10, 2024
+- On-site demo of ambient documentation in January
+- Executive presentation to be scheduled for budget approval

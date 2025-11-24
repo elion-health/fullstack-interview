@@ -1,0 +1,206 @@
+PRODUCT FEEDBACK COMPILATION
+=============================
+Product: Epic MyChart Patient Portal
+Health System: Massachusetts General Hospital
+Compiled by: Patient Experience Team
+Date: November 20, 2024
+Feedback Period: Sept-Nov 2024
+
+EXECUTIVE SUMMARY
+-----------------
+MyChart usage continues to grow (now 73% of active patients enrolled). Overall satisfaction is 4.2/5, but several pain points emerged from focus groups and support tickets that need addressing. Mobile app usage has overtaken desktop (62% mobile vs 38% web).
+
+POSITIVE FEEDBACK
+-----------------
+
+Theme: Appointment Self-Scheduling
+- "Being able to book my own appointments is a game-changer. No more phone tag."
+- "Love that I can see available times across different providers in the same specialty."
+- "The reminder texts are perfect - haven't missed an appointment in over a year."
+
+Theme: Test Results Access
+- "Getting lab results with doctor's notes before my follow-up call helps me prepare questions."
+- "The trend graphs for my A1C levels are really motivating. I can see my progress."
+- "Appreciate the explanations of what the results mean - reduces my anxiety waiting for the doctor to call."
+
+Theme: Prescription Management
+- "Refill requests are so easy now. Used to have to call and wait on hold."
+- "Love being able to see all my medications in one place."
+
+CRITICAL ISSUES
+---------------
+
+1. Message Response Times (HIGH PRIORITY)
+   Complaint Volume: 247 tickets
+
+   - "I sent an urgent message about medication side effects and didn't hear back for 3 days."
+   - "The portal says responses in 2 business days but I consistently wait 4-5 days."
+   - "No way to mark a message as urgent - everything goes into the same queue."
+   - "Would rather just call at this point - at least I get a response."
+
+   Root Cause Analysis:
+   - Clinical staff understaffed for message volume (up 40% YoY)
+   - No triage system for message priority
+   - Some departments better than others (Cardiology <24hrs, Ortho >4 days)
+
+   Recommendation: Implement message triage AI + hire additional support staff
+
+2. Mobile App Crashes (HIGH PRIORITY)
+   Complaint Volume: 189 tickets (iOS users specifically)
+
+   - "App crashes every time I try to upload a photo for my dermatology visit."
+   - "Can't view my imaging results - app just freezes and I have to restart."
+   - "After the last iOS update, the app crashes on launch 50% of the time."
+
+   Technical Investigation:
+   - Issue confirmed with iOS 18.1 and MyChart version 2024.3.1
+   - Memory leak when loading large PDF documents
+   - Image upload fails for files >8MB
+
+   Status: Epic released patch 2024.3.2 on Nov 18, pushed to app store Nov 20
+   Action: Monitor crash reports over next 2 weeks
+
+3. Video Visit Quality (MEDIUM PRIORITY)
+   Complaint Volume: 156 tickets
+
+   - "Video froze multiple times during my appointment. We had to switch to phone."
+   - "Audio echo made it hard to hear my doctor."
+   - "Couldn't get video to work on my Android tablet, only works on my phone."
+
+   Issue: MyChart video uses older WebRTC implementation, not optimized for low bandwidth
+   Note: This is an Epic platform limitation, not something we can fix locally
+   Workaround: IT team created troubleshooting guide, added bandwidth test to pre-visit checklist
+
+4. Bill Pay Confusion (MEDIUM PRIORITY)
+   Complaint Volume: 134 tickets
+
+   - "I have 5 different bills showing up. Can't figure out what I actually owe."
+   - "Paid my bill in MyChart but still receiving paper statements saying I owe money."
+   - "The billing codes don't make sense - can't tell what service each charge is for."
+
+   Root Cause: Integration issue between Epic and revenue cycle system
+   - Payment sync delay of 3-5 days causing confusion
+   - Multiple billing entities (hospital, physicians, labs) create separate bills
+
+   Status: Revenue cycle team working on consolidation project (Q1 2025 target)
+
+5. Proxy Access Issues (LOW-MEDIUM PRIORITY)
+   Complaint Volume: 89 tickets
+
+   - "I'm trying to manage my elderly mother's care but can't see her test results."
+   - "Proxy access for my teenager expired and I can't figure out how to renew it."
+   - "As a parent of twins, having to switch between two accounts is so tedious."
+
+   Policy Issue: Proxy access requires in-person verification for security
+   Friction: Parents of adult children (18+) must get signed consent forms
+
+   Opportunity: Explore digital consent workflows
+
+FEATURE REQUESTS
+----------------
+
+Top Requested Features (by volume):
+
+1. Medication Price Comparison (78 requests)
+   - "I want to see if there's a cheaper pharmacy for my prescriptions."
+   - "Show me generic alternatives and what they cost at different pharmacies."
+
+2. Direct Specialist Scheduling (64 requests)
+   - "Why do I need a referral to book with a specialist in your own system?"
+   - "Let me self-schedule with specialists like I can with my PCP."
+
+3. Family Calendar View (52 requests)
+   - "Managing appointments for 4 family members means switching accounts constantly."
+   - "Need a combined calendar view of all my dependents' appointments."
+
+4. Symptom Checker / Virtual Triage (49 requests)
+   - "Would be great to input symptoms and get guidance on whether I need to come in."
+   - "Help me decide if I need urgent care vs. regular appointment vs. ER."
+
+5. Integration with Wearables (43 requests)
+   - "Can my Apple Watch data feed into my chart so my doctor sees my heart rate trends?"
+   - "Let me share my Fitbit sleep data with my sleep specialist."
+
+COMPETITIVE INTELLIGENCE
+-------------------------
+
+Our team tested competitor patient portals:
+
+Cleveland Clinic (Epic MyChart):
+- Similar feature set to ours
+- Better mobile app performance (fewer crash reports in app store reviews)
+- Integrated wellness content and health coaching
+
+UCSF (Cerner portal):
+- Lower user satisfaction based on app store ratings (3.2/5 vs our 4.2/5)
+- More flexible proxy access model
+- Weaker prescription management features
+
+Partners HealthCare (Epic MyChart):
+- Recently launched AI chat assistant for appointment scheduling
+- Allows patients to compare appointment wait times across locations
+- Integrated telehealth triage before booking in-person
+
+FOCUS GROUP INSIGHTS
+--------------------
+
+Conducted 3 focus groups with diverse patient populations (Nov 5-12, n=42 total)
+
+Older Adults (65+, n=15):
+- Prefer phone calls over portal messages for complex questions
+- Struggle with password resets - need better support
+- Want larger font options in mobile app
+- Appreciate ability to add family members as proxy users
+
+Working Adults (25-50, n=18):
+- Value mobile-first experience and speed
+- Want more self-service options to avoid phone calls during work hours
+- Frustrated by fragmented billing experience
+- Interested in AI features like symptom checking
+
+Parents (n=9):
+- Managing multiple kids' accounts is biggest pain point
+- Love vaccination tracking features
+- Want school forms and medical records export to be easier
+- Interested in developmental milestone tracking for young children
+
+RECOMMENDATIONS FOR PRODUCT ROADMAP
+-----------------------------------
+
+Immediate (Next 3 Months):
+1. Staff up clinical message response team to meet 2-day SLA
+2. Implement message triage/urgency classification
+3. Deploy Epic's patch for iOS crash issues
+4. Create patient-friendly billing explainer content
+
+Short-term (3-6 Months):
+1. Pilot AI-powered message triage and auto-responses for common questions
+2. Improve video visit quality through network optimization
+3. Consolidate billing statements (coordinate with revenue cycle)
+4. Streamline proxy access renewal process
+
+Medium-term (6-12 Months):
+1. Evaluate Epic's medication price transparency module
+2. Expand self-scheduling to more specialties
+3. Pilot family calendar view feature
+4. Integrate basic wearable data feeds (heart rate, steps, sleep)
+
+Long-term (12+ Months):
+1. Implement symptom checker / virtual triage tool
+2. Explore AI chat assistant for common queries
+3. Build personalized health content recommendation engine
+
+APPENDIX: SUPPORT TICKET CATEGORIES
+------------------------------------
+Total Tickets (Sept-Nov 2024): 1,247
+
+Message Response Times: 247 (19.8%)
+Mobile App Technical Issues: 189 (15.2%)
+Video Visit Problems: 156 (12.5%)
+Billing Questions: 134 (10.7%)
+Proxy Access: 89 (7.1%)
+Password Reset: 76 (6.1%)
+Appointment Scheduling: 64 (5.1%)
+Prescription Issues: 58 (4.7%)
+Test Results Questions: 52 (4.2%)
+Other: 182 (14.6%)

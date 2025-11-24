@@ -1,0 +1,210 @@
+IMPLEMENTATION NOTES - INTERNAL
+================================
+Product: Health Catalyst Data Operating System (DOS)
+Health System: Cleveland Clinic
+Project Phase: Initial Deployment
+Author: Michael Chen (IT Director)
+Date: August 14, 2024
+
+PROJECT STATUS: YELLOW (On track but with concerns)
+
+WEEK 8 IMPLEMENTATION UPDATE
+----------------------------
+
+DATA PIPELINE DEPLOYMENT - 75% Complete
+
+What's Working:
+✓ EDW schema deployed and validated
+✓ Epic ADT feed running smoothly (real-time patient movements)
+✓ Laboratory results interface operational (daily batch at 2am)
+✓ Claims data from payer feeds loading correctly
+✓ Initial data quality dashboards showing 96% completeness
+
+What's Blocked:
+✗ Clinical notes extraction from Epic - performance issues causing Epic slowdown
+✗ Radiology results feed intermittent (PACS integration issue, not DOS)
+✗ Pharmacy data missing some historical records (data retention policy conflict)
+
+TECHNICAL CHALLENGES
+--------------------
+
+1. Epic Clinical Notes Extraction
+   Problem: Our initial approach was pulling all progress notes in real-time via Epic API
+   Impact: Epic application servers showing 15-20% CPU increase during business hours
+   Epic TAM (Karen) flagged this as unsustainable
+
+   Solution in progress:
+   - Switch to overnight batch extraction
+   - Only pull notes modified in last 24 hours
+   - Use Epic's bulk FHIR export instead of individual API calls
+   - Health Catalyst engineer (Priya) building revised ETL pipeline
+
+   Timeline: 2 weeks to redeploy, test, and validate
+
+   Risk: This delays our NLP pilot for patient complexity scoring by 3-4 weeks
+
+2. Data Volume Larger Than Expected
+   Estimate at kickoff: 750GB total data warehouse size
+   Actual: Already at 1.2TB and still loading historical data
+
+   Impact: Need to provision additional storage faster than planned
+   Cost: Extra $18K for storage (not in original budget)
+
+   Root cause: Underestimated granularity of lab data (getting individual test results, not just summary panels)
+
+   Decision: Proceed with additional storage - Amanda approved via email 8/13
+
+3. User Authentication Integration
+   Problem: Initial SSO config only working for @clevelandclinic.org emails
+   Many of our analysts use @ccf.org domain - not authenticating
+
+   Health Catalyst Support ticket #47291 - escalated to engineering
+   Workaround: Manually provisioning accounts for @ccf.org users
+   Permanent fix ETA: August 23
+
+DEPLOYMENT METRICS
+------------------
+
+Users Trained: 32 of 45 target users
+- Data Science team: 8/8 (100%)
+- Quality department: 12/15 (80%)
+- Finance/Analytics: 7/12 (58%)
+- Clinical informatics: 5/10 (50%)
+
+System Performance:
+- Average query response time: 3.2 seconds (target: <5 sec) ✓
+- Dashboard load time: 6.8 seconds (target: <10 sec) ✓
+- Overnight ETL completion: 4.5 hours (window is 6 hours) ✓
+- System availability: 99.2% (target: 99.5%) - Close
+
+Data Quality Scores:
+- Completeness: 96% ✓
+- Accuracy: 94% (still validating against source systems)
+- Timeliness: 89% (impacted by Epic notes delay) ⚠
+- Consistency: 91% ✓
+
+USER FEEDBACK - Week 7 Check-in
+-------------------------------
+
+Positive:
+"The Population Builder tool is incredible - I can create patient cohorts in minutes that used to take me days in Epic Reporting Workbench." - Janet K., Quality Analyst
+
+"Finally able to join clinical and claims data easily. This is game-changing for our value-based care contracts." - Robert M., Finance
+
+"The pre-built sepsis dashboard is exactly what we needed. Already identified 3 cases that would have been missed." - Dr. Sarah L., Hospitalist
+
+Critical Feedback:
+"Why can't I see real-time data? Everything is from yesterday or older." - Mark T., Data Scientist
+Response: Explained batch processing model vs. real-time. Discussed streaming option for Phase 2.
+
+"The interface is not intuitive. I keep getting lost in the menus." - Lisa R., Clinical Informaticist
+Response: Scheduled additional training sessions. Health Catalyst creating role-specific training videos.
+
+"I found discrepancies between DOS patient counts and Epic registration reports." - Amanda R., CAO
+Response: Data quality issue - identified duplicate patients due to merge logic. HC fixing.
+
+UPCOMING MILESTONES
+-------------------
+
+Week 9 (Aug 19-23):
+- Complete remaining user training sessions
+- Deploy fixed Epic notes extraction pipeline
+- Resolve patient duplicate issue
+- User acceptance testing for Phase 1 dashboards
+
+Week 10-11 (Aug 26 - Sept 6):
+- Build initial custom dashboards for Quality department
+- Pharmacy data backfill completion
+- Load historical data (2022-2023)
+- Performance optimization based on real usage patterns
+
+Week 12 (Sept 9-13):
+- Go-live for Phase 1: Core analytics platform
+- Transition from implementation to operations support
+- Project retrospective with Health Catalyst team
+
+PHASE 2 PLANNING (Sept - Dec)
+-----------------------------
+
+Scope for Phase 2:
+1. Healthcare.AI platform deployment
+   - Readmission prediction model
+   - OR utilization optimization
+   - No-show prediction
+
+2. Real-time streaming data for sepsis surveillance
+
+3. Expanded user base (additional 30 users from operations teams)
+
+4. Custom model development with HC data science team
+
+Budget: $180K (already approved for fiscal year)
+Timeline: Sept kickoff, Dec go-live
+
+LESSONS LEARNED SO FAR
+----------------------
+
+What Went Well:
+- Health Catalyst team is responsive and knowledgeable
+- Project governance structure (weekly standups, biweekly steering) keeps us aligned
+- Data quality focus from day 1 paid off - few surprises
+- Executive sponsorship from Amanda has been crucial for issue resolution
+
+What Could Be Better:
+- Should have done more detailed data volume analysis upfront
+- Need better coordination with Epic team (they felt blindsided by API load)
+- Training should start earlier - users want hands-on time before go-live
+- Budget should include 15-20% contingency for infrastructure surprises
+
+Recommendations for Future Projects:
+1. Always pressure-test vendor's infrastructure sizing estimates
+2. Involve all IT stakeholders (Epic, network, security) in kickoff
+3. Plan for training to happen 4-6 weeks before go-live, not 1-2 weeks
+4. Build in budget buffer for unplanned technical needs
+
+RISKS & MITIGATION
+------------------
+
+Risk: Epic notes pipeline delay impacts downstream AI projects
+Likelihood: High | Impact: Medium
+Mitigation: Working overtime to get pipeline fixed; may need to descope some Phase 2 AI features
+
+Risk: User adoption lower than expected due to interface complexity
+Likelihood: Medium | Impact: Medium
+Mitigation: Additional training, create quick reference guides, assign super-users as champions
+
+Risk: Data quality issues erode trust in platform
+Likelihood: Low | Impact: High
+Mitigation: Weekly data quality audits, transparent communication about known issues, quick fixes
+
+Risk: Performance degrades as user base grows
+Likelihood: Medium | Impact: Medium
+Mitigation: Monitoring dashboards deployed, plan for infrastructure scaling in Phase 2
+
+BUDGET STATUS
+-------------
+
+Original Budget: $425K (platform license + implementation services)
+Spent to date: $368K
+Remaining: $57K
+Additional approved: $18K (storage overage)
+
+Forecast to complete: $395K + $18K = $413K total
+Under budget by: $12K ✓
+
+Phase 2 budget separate: $180K
+
+CONTACT INFO
+------------
+
+Health Catalyst Team:
+- James Wu (VP Customer Success): james.wu@healthcatalyst.com
+- Priya Patel (Senior Data Scientist): priya.patel@healthcatalyst.com
+- Support: support@healthcatalyst.com | Ticket portal: support.healthcatalyst.com
+
+Cleveland Clinic Team:
+- Michael Chen (IT Director): chenm4@ccf.org
+- Amanda Rodriguez (CAO): rodria12@ccf.org
+- Janet Kumar (Quality Analytics Lead): kumarj@ccf.org
+
+NEXT UPDATE: August 21, 2024

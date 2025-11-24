@@ -1,11 +1,4 @@
-import {
-  Collection,
-  Entity,
-  ManyToMany,
-  PrimaryKey,
-  Property,
-} from "@mikro-orm/core";
-import { Vendor } from "./Vendor";
+import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 
 @Entity()
 export class HealthSystem {
@@ -20,9 +13,6 @@ export class HealthSystem {
 
   @Property({ type: "text", nullable: true })
   description?: string;
-
-  @ManyToMany(() => Vendor, (vendor) => vendor.healthSystems, { owner: true })
-  vendors = new Collection<Vendor>(this);
 
   @Property({ type: "Date" })
   createdAt: Date = new Date();

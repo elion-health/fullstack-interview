@@ -1,31 +1,21 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-
-interface Vendor {
-  id: number;
-  name: string;
-  category: string;
-  description?: string;
-  website?: string;
-}
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 interface HealthSystem {
   id: number;
   name: string;
   location: string;
   description?: string;
-  vendors: Vendor[];
   createdAt: string;
 }
 
@@ -40,7 +30,7 @@ export default function HealthSystemDetailPage() {
     fetch(`/api/health-systems/${params.id}`)
       .then((res) => {
         if (!res.ok) {
-          throw new Error('Health system not found');
+          throw new Error("Health system not found");
         }
         return res.json();
       })
@@ -71,9 +61,9 @@ export default function HealthSystemDetailPage() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              {error || 'Health system not found'}
+              {error || "Health system not found"}
             </p>
-            <Button onClick={() => router.push('/')} className="mt-4">
+            <Button onClick={() => router.push("/")} className="mt-4">
               Back to Home
             </Button>
           </CardContent>
@@ -87,7 +77,7 @@ export default function HealthSystemDetailPage() {
       <div>
         <Button
           variant="outline"
-          onClick={() => router.push('/')}
+          onClick={() => router.push("/")}
           className="mb-4"
         >
           ← Back to Directory
@@ -102,54 +92,22 @@ export default function HealthSystemDetailPage() {
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">
-            {healthSystem.description || 'No description available'}
+            {healthSystem.description || "No description available"}
           </p>
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader>
-          <CardTitle>Health IT Vendors</CardTitle>
+          <CardTitle>Products & Vendors</CardTitle>
           <CardDescription>
-            Technology vendors used by this health system
+            Products and vendors used by this health system
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {healthSystem.vendors.length === 0 ? (
-            <p className="text-muted-foreground">
-              No vendors associated with this health system.
-            </p>
-          ) : (
-            <div className="grid gap-4 md:grid-cols-2">
-              {healthSystem.vendors.map((vendor) => (
-                <Card key={vendor.id}>
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <CardTitle className="text-lg">{vendor.name}</CardTitle>
-                      <Badge variant="secondary">{vendor.category}</Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-2">
-                    {vendor.description && (
-                      <p className="text-sm text-muted-foreground">
-                        {vendor.description}
-                      </p>
-                    )}
-                    {vendor.website && (
-                      <a
-                        href={vendor.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-primary hover:underline"
-                      >
-                        Visit website →
-                      </a>
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
+          <p className="text-muted-foreground">
+            I'm sure some cool products should go here...
+          </p>
         </CardContent>
       </Card>
     </div>

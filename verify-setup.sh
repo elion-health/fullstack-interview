@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Verification script for interview setup
-echo "🔍 Verifying Elion Interview Setup..."
+# Verification script for setup
+echo "🔍 Verifying Elion Setup..."
 echo ""
 
 # Check if Docker is running
@@ -94,5 +94,4 @@ echo ""
 echo "📋 Next steps:"
 echo "   1. Start dev server: npm run dev"
 echo "   2. Visit: http://localhost:3000"
-echo "   3. Review INTERVIEWER_GUIDE.md before the interview"
 echo ""

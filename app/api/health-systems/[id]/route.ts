@@ -16,8 +16,8 @@ export async function GET(
         return null;
       }
 
-      // Fetch health system and populate vendors relationship
-      return em.findOne(HealthSystem, { id }, { populate: ["vendors"] });
+      // Fetch health system
+      return em.findOne(HealthSystem, { id });
     });
 
     if (!healthSystem) {

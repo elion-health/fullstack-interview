@@ -1,0 +1,160 @@
+INTERNAL NOTES - CONFIDENTIAL
+==============================
+Re: Teladoc Health Partnership Discussion
+Date: September 8, 2024
+Author: Emily Davis (VP of Health IT, Johns Hopkins)
+Distribution: Executive Leadership Only
+
+BACKGROUND
+----------
+Met with Teladoc leadership to discuss expanding our virtual care capabilities beyond basic urgent care. Current contract is $450K/year for general medical visits only. They're proposing a comprehensive virtual care platform expansion.
+
+STRATEGIC OPPORTUNITY
+--------------------
+Teladoc is offering Johns Hopkins a "Flagship Academic Partnership" designation - we'd be their showcase academic medical center for integrated virtual care. This comes with:
+
+1. Preferential pricing (30% below standard rates)
+2. Co-development of specialized virtual care programs
+3. Joint research opportunities and publications
+4. Dedicated clinical and technical support team
+
+They're only offering this to 3-4 health systems nationally. Cleveland Clinic and UCSF are already in discussions.
+
+PROPOSED EXPANSION
+------------------
+
+A. Mental Health Services ($380K/year)
+   - 24/7 therapy and psychiatry access for our patient population
+   - Average wait time: <48 hours for therapy, <72 hours for psychiatry
+   - Integration with Epic for medication orders and documentation
+   - Key differentiator: They have child/adolescent specialists (gap in our current network)
+
+B. Chronic Care Management ($520K/year)
+   - Remote monitoring for diabetes, hypertension, CHF, COPD
+   - Includes patient devices (BP monitors, glucometers, pulse ox)
+   - Dedicated care team (RN + dietitian + pharmacist) for high-risk patients
+   - Claims data suggests 15-20% reduction in ED visits for enrolled patients
+
+C. Specialty Virtual Consults ($290K/year)
+   - Second opinions for complex cases
+   - Pre-op consultations to reduce in-person visit burden
+   - Post-discharge follow-ups
+   - Could significantly reduce no-show rates and improve access
+
+Total Investment: $1.19M/year (in addition to current $450K = $1.64M total)
+
+BUSINESS CASE
+-------------
+Sarah Kim from finance ran preliminary numbers:
+
+Revenue Opportunity:
+- Reimbursement for virtual visits: Est. $850K-$1.1M annually
+- Improved patient capture (vs. losing to competitors): $2-3M
+- Reduced no-shows and late cancellations: $400K
+
+Cost Avoidance:
+- ED diversion for chronic care patients: $750K-$1.2M
+- Reduced need to expand physical clinic space: $500K capital avoidance
+- Staff overtime reduction (after-hours coverage): $180K
+
+ROI appears strongly positive, but highly dependent on patient adoption rates and payer mix.
+
+CONCERNS & RISKS
+----------------
+
+1. PHYSICIAN RESISTANCE
+   - Some faculty are skeptical of virtual care quality
+   - Concern about losing patient relationships to Teladoc clinicians
+   - Fear of reduced RVU generation
+
+   Mitigation: Position as access expansion, not replacement. Pilot with supportive departments first.
+
+2. TECHNICAL INTEGRATION COMPLEXITY
+   - Teladoc API integration with Epic is "bi-directional" but several customers report issues
+   - Clinical documentation from Teladoc visits needs to flow seamlessly into Epic
+   - Patient identity matching has been problematic at other sites
+
+   Mitigation: Require proof-of-concept integration in test environment before contract signature.
+
+3. BRAND RISK
+   - Teladoc clinicians represent Johns Hopkins brand during patient interactions
+   - We don't control their hiring, training, or quality oversight
+   - Any patient safety events reflect on us even if Teladoc is liable
+
+   Mitigation: Negotiate quarterly quality reviews, patient satisfaction minimums, and off-ramp clause.
+
+4. FINANCIAL SUSTAINABILITY
+   - Reimbursement for virtual visits is evolving - current rates may not persist
+   - CMS signaled potential payment cuts for virtual care in 2026
+   - Business case assumes 65% patient adoption - what if it's lower?
+
+   Mitigation: Structure contract with volume-based pricing tiers.
+
+COMPETITIVE LANDSCAPE
+---------------------
+Our competitors are moving fast on this:
+- UMMS just expanded their Amwell contract ($2M investment)
+- Penn Medicine launched their own virtual care platform (built in-house, $5M)
+- Duke partnered with Teladoc last year (hearing positive feedback)
+
+If we don't move, we risk losing tech-savvy patients to competitors with better virtual access.
+
+ALTERNATIVE OPTIONS
+-------------------
+
+Option A: Build In-House
+- Estimated cost: $3-4M initial investment + $800K annual operating costs
+- Timeline: 18-24 months to launch
+- Pros: Full control, keep all revenue, data ownership
+- Cons: Significant upfront capital, implementation risk, need to build clinical coverage model
+
+Option B: Partner with Amwell Instead
+- Similar pricing to Teladoc
+- Better Epic integration according to some references
+- Smaller provider network, especially for mental health
+- No "flagship partnership" opportunity
+
+Option C: Narrow Partnership (Chronic Care Only)
+- Start with just chronic care management ($520K)
+- Prove ROI before expanding to other services
+- Reduces risk but also limits opportunity
+
+RECOMMENDATION
+--------------
+I recommend moving forward with the Teladoc Flagship Partnership, but with phased implementation:
+
+Phase 1 (Q1 2025): Mental Health + Chronic Care Management
+- These have clearest ROI and fill urgent gaps
+- Cost: $900K + existing $450K = $1.35M
+- 6-month evaluation period with defined success metrics
+
+Phase 2 (Q3 2025): Specialty Virtual Consults (if Phase 1 succeeds)
+- Add $290K
+- Total investment: $1.64M
+
+Key Contract Terms to Negotiate:
+1. 90-day termination clause (not the standard 180 days)
+2. Patient satisfaction must maintain >85% rating
+3. Epic integration must meet defined technical requirements in 60-day POC
+4. Quarterly business reviews with C-suite access
+5. Cap on annual price increases at 3%
+6. Co-marketing rights for recruitment and publications
+
+NEXT STEPS
+----------
+1. Present to executive leadership team (Sept 15 meeting)
+2. Get clinical leadership input (dept chairs meeting Sept 20)
+3. Negotiate term sheet if approved (Oct)
+4. Technical POC for Epic integration (Nov-Dec)
+5. Contract signature target: January 2025
+6. Go-live target: March 2025
+
+I'll need executive sponsorship from Dr. Morrison (CMO) to drive physician adoption. This is a significant strategic investment but I believe it positions us competitively for the next 3-5 years of virtual care growth.
+
+---
+
+ATTACHMENTS REFERENCED (separate files):
+- Teladoc_Financial_Proposal_Sept2024.pdf
+- Sarah_Kim_ROI_Analysis_v2.xlsx
+- Epic_Integration_Technical_Specs.pdf
+- Reference_Calls_Summary.docx
