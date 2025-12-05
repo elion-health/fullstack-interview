@@ -12,9 +12,8 @@ A platform for healthcare IT leaders to track and analyze vendor relationships, 
 
 ## Prerequisites
 
-- Node.js 20+ installed
-- Database credentials (provided separately)
-- OpenAI API key (provided separately)
+- [Node.js 20+](https://nodejs.org/en/download/) installed
+- [Docker Desktop](https://docs.docker.com/get-docker/) installed (includes Docker Compose)
 
 ## Getting Started
 
@@ -24,28 +23,69 @@ A platform for healthcare IT leaders to track and analyze vendor relationships, 
 npm install
 ```
 
-### 2. Set Up Environment Variables
+### 2. Start PostgreSQL with Docker
 
-Create a `.env.local` file in the root directory and add the provided environment variables:
+Start the PostgreSQL database container:
 
 ```bash
-DATABASE_URL=<provided_database_url>
+docker compose up -d
+```
+
+This will start a PostgreSQL 18 container with the following configuration:
+- **Host**: localhost
+- **Port**: 5432
+- **Database**: elion_interview
+- **User**: elion
+- **Password**: elion_dev_password
+
+Verify the database is running:
+
+```bash
+docker compose ps
+```
+
+### 3. Set Up Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```bash
+cp .env.example .env.local
+```
+
+Then add your OpenAI API key to `.env.local`:
+
+```bash
+DATABASE_URL=postgresql://elion:elion_dev_password@localhost:5432/elion_interview
 OPENAI_API_KEY=<provided_openai_key>
 ```
 
-### 3. Start the Development Server
+### 4. Run Database Migrations and Seed Data
+
+Run migrations to create the database schema:
+
+```bash
+npm run db:migrate:up
+```
+
+Seed the database with sample data:
+
+```bash
+npm run db:seed
+```
+
+This will populate your database with:
+- 4 sample users (health system executives)
+- 8 healthcare vendors (Epic, Cerner, Health Catalyst, etc.)
+- 24 products across all vendors
+- 5 health systems
+
+### 5. Start the Development Server
 
 ```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to see the application.
-
-The database is already set up with sample data:
-- 4 sample users (health system executives)
-- 8 healthcare vendors (Epic, Cerner, Health Catalyst, etc.)
-- 24 products across all vendors
-- 5 health systems
 
 ## Project Structure
 
@@ -171,7 +211,22 @@ export async function GET() {
 
 ### Database connection issues
 
-If you encounter database connection errors, verify your `.env.local` file has the correct `DATABASE_URL`.
+If you encounter database connection errors:
+
+1. Verify the PostgreSQL container is running:
+   ```bash
+   docker compose ps
+   ```
+
+2. Check the container logs:
+   ```bash
+   docker compose logs postgres
+   ```
+
+3. Verify your `.env.local` file has the correct `DATABASE_URL`:
+   ```bash
+   DATABASE_URL=postgresql://elion:elion_dev_password@localhost:5432/elion_interview
+   ```
 
 ### Reset the database
 
@@ -179,6 +234,20 @@ If you need to start fresh:
 
 ```bash
 npm run db:reset
+```
+
+### Stop the database
+
+When you're done working:
+
+```bash
+docker compose down
+```
+
+To stop and remove all data:
+
+```bash
+docker compose down -v
 ```
 
 ### TypeScript errors

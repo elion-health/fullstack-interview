@@ -9,17 +9,18 @@ echo "1️⃣  Checking Docker..."
 if docker info > /dev/null 2>&1; then
     echo "   ✅ Docker is running"
 else
-    echo "   ❌ Docker is not running. Please start Docker."
+    echo "   ❌ Docker is not running. Please start Docker Desktop."
     exit 1
 fi
 
-# Check if database container is running
+# Check if PostgreSQL container is running
 echo ""
-echo "2️⃣  Checking database container..."
-if docker compose ps | grep -q "elion-interview-db.*Up"; then
-    echo "   ✅ Database container is running"
+echo "2️⃣  Checking PostgreSQL container..."
+if docker compose ps | grep -q "elion-postgres.*running"; then
+    echo "   ✅ PostgreSQL container is running"
 else
-    echo "   ❌ Database container is not running. Run: docker compose up -d"
+    echo "   ❌ PostgreSQL container is not running."
+    echo "      Run: docker compose up -d"
     exit 1
 fi
 
@@ -38,11 +39,6 @@ echo ""
 echo "4️⃣  Checking environment variables..."
 if [ -f ".env.local" ]; then
     echo "   ✅ .env.local exists"
-    if grep -q "OPENAI_API_KEY=your_openai_api_key_here" .env.local; then
-        echo "   ⚠️  WARNING: OpenAI API key not set (still using placeholder)"
-    else
-        echo "   ✅ OpenAI API key appears to be set"
-    fi
 else
     echo "   ⚠️  .env.local not found. Copy from .env.example"
 fi
@@ -50,17 +46,18 @@ fi
 # Check database connection
 echo ""
 echo "5️⃣  Checking database connection..."
-if docker exec elion-interview-db psql -U elion -d elion_interview -c "SELECT 1" > /dev/null 2>&1; then
+if PGPASSWORD=elion_dev_password psql -h localhost -p 5432 -U elion -d elion_interview -c "SELECT 1" > /dev/null 2>&1; then
     echo "   ✅ Database connection successful"
 else
     echo "   ❌ Cannot connect to database"
+    echo "      Make sure PostgreSQL is running: docker compose up -d"
     exit 1
 fi
 
 # Check if migrations have been run
 echo ""
 echo "6️⃣  Checking database schema..."
-TABLE_COUNT=$(docker exec elion-interview-db psql -U elion -d elion_interview -t -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE';" 2>/dev/null | tr -d ' ')
+TABLE_COUNT=$(PGPASSWORD=elion_dev_password psql -h localhost -p 5432 -U elion -d elion_interview -t -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE';" 2>/dev/null | tr -d ' ')
 if [ "$TABLE_COUNT" -ge 3 ]; then
     echo "   ✅ Database tables exist ($TABLE_COUNT tables found)"
 else
@@ -70,7 +67,7 @@ fi
 # Check if seed data exists
 echo ""
 echo "7️⃣  Checking seed data..."
-USER_COUNT=$(docker exec elion-interview-db psql -U elion -d elion_interview -t -c "SELECT COUNT(*) FROM \"user\";" 2>/dev/null | tr -d ' ')
+USER_COUNT=$(PGPASSWORD=elion_dev_password psql -h localhost -p 5432 -U elion -d elion_interview -t -c "SELECT COUNT(*) FROM \"user\";" 2>/dev/null | tr -d ' ')
 if [ "$USER_COUNT" -ge 1 ]; then
     echo "   ✅ Seed data exists ($USER_COUNT users found)"
 else
