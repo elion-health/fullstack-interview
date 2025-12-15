@@ -165,6 +165,8 @@ The home page displays:
 
 ## Working with MikroORM
 
+[MikroORM Docs](https://mikro-orm.io/docs/guide/first-entity)
+
 ### Creating a New Entity
 
 1. Create entity file in `db/entities/`:
