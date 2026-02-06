@@ -1,0 +1,93 @@
+REGIONAL EHR CONSORTIUM - QUARTERLY SYNC
+=========================================
+Date: December 5, 2024
+Call Type: Multi-Health System Collaboration
+Duration: 90 minutes
+
+Attendees:
+  - Sarah Johnson (Massachusetts General Hospital, CIO)
+  - Michael Chen (Cleveland Clinic, IT Director)
+  - Dr. Amanda Rodriguez (Cleveland Clinic, Chief Analytics Officer)
+  - Emily Davis (Johns Hopkins Hospital, VP of Health IT)
+  - Robert Thompson (Mayo Clinic, Senior Director IT Strategy)
+  - Jennifer Martinez (External Facilitator, CHIME)
+
+---
+
+MEETING PURPOSE
+---------------
+Quarterly call for regional health systems to share vendor experiences, negotiate collective purchasing power, and discuss interoperability challenges.
+
+---
+
+DISCUSSION TRANSCRIPT (Partial)
+
+[00:05:23]
+Jennifer Martinez: Let's start with a round-robin on EHR vendor updates. Sarah, you're on Epic - how's the 2024.3 release looking?
+
+Sarah Johnson: We've been evaluating it since November. The ambient documentation features are interesting but we're concerned about infrastructure costs. Actually, Michael, I heard Cleveland Clinic piloted something similar with Health Catalyst's Healthcare.AI - did that help reduce documentation burden or is it a different use case entirely?
+
+Michael Chen: Completely different. Healthcare.AI is more for predictive analytics - readmission risk, OR scheduling optimization. We're actually still on Cerner Millennium for our core EHR so the Epic ambient stuff isn't even on our radar. But funny you mention it - we talked to UCSF last month and they're doing a Millennium upgrade while also looking at Amwell for telehealth. Seems like everyone's juggling multiple vendor relationships right now.
+
+[00:12:45]
+Emily Davis: That's exactly what we're experiencing at Hopkins. We've got Epic for clinical, Teladoc for our virtual care pilot, and we're evaluating whether to stick with Change Healthcare for revenue cycle or move to a different vendor. The integration complexity is real. I was at HIMSS and heard that Mayo pulled off a really clean integration between their Epic instance and Tableau dashboards - Robert, can you speak to that?
+
+Robert Thompson: Sure. The Tableau Healthcare Analytics Accelerators were helpful as a starting point, but honestly we did a lot of custom work. Our analytics team built specialty-specific views on top of Epic's Cogito data. The challenge was getting near-real-time data for our sepsis surveillance - we ended up building a custom data pipeline rather than relying on any vendor's out-of-box solution.
+
+Amanda Rodriguez: That's interesting because we're doing something similar with Health Catalyst DOS. The Population Builder tool is great for retrospective cohort analysis but the latency issues are real for clinical decision support. We've been talking to them about their streaming ingestion option.
+
+[00:24:18]
+Sarah Johnson: Can I ask - has anyone here evaluated Meditech Expanse? I know it's more common in community hospitals, but we've got some affiliated facilities that are on legacy Meditech and I'm wondering if it makes sense to bring them onto Epic or let them upgrade to Expanse independently.
+
+Robert Thompson: We looked at it two years ago when we were expanding our regional network. The interoperability with Epic via FHIR worked better than expected. One of our network hospitals in Wisconsin runs Expanse and we can pull their data into our Tableau Server dashboards without too much friction.
+
+Michael Chen: The real question is cost. Expanse is significantly cheaper than Epic for smaller facilities. Cleveland Clinic has similar affiliated hospitals and we're taking a hybrid approach - larger facilities get full Millennium, smaller ones get connected through HealtheIntent for population health. It's not perfect but it's manageable.
+
+[00:35:52]
+Emily Davis: Let me shift topics - telehealth vendors. We've been using Teladoc for about eight months now. The Mental Health module has been popular with patients but the Epic integration is clunky. I've heard Amwell Converge is supposed to be better for EHR workflow embedding. Anyone have direct experience?
+
+Sarah Johnson: We demoed Amwell last quarter. The Converge integration with MyChart was slick - patients could launch a video visit right from the portal. But our physicians pushed back on having yet another interface. They want everything in Hyperspace.
+
+Amanda Rodriguez: That's a universal problem. We tried embedding Teladoc into PowerChart and it was a mess. The nurses ended up opening separate browser tabs. I think UCSF has a better setup - their team told me they customized the Amwell integration heavily with their IT team.
+
+Robert Thompson: We've taken a different approach at Mayo. We built our own telehealth platform internally and integrated it natively with Epic. Vendor solutions add too many dependencies. Though I realize not everyone has the development resources for that.
+
+[00:48:30]
+Jennifer Martinez: Let's talk about the elephant in the room - the Change Healthcare breach earlier this year. How has that affected your revenue cycle strategies?
+
+Michael Chen: We weren't directly affected since we use a different clearinghouse, but it spooked our board. We're doing a full security assessment of all our external vendor connections. Health Catalyst passed with flying colors - they're SOC 2 Type II certified and their security documentation is thorough.
+
+Emily Davis: Hopkins uses Change Healthcare for about 40% of our claims volume. We had significant disruption for weeks. We're now actively looking at Waystar as an alternative. The problem is migration costs and the retraining required for our billing staff.
+
+Sarah Johnson: We diversified after the breach. We kept Change Healthcare but added a secondary clearinghouse. The Intelligent Healthcare Network is still one of the best for payer connectivity, but we can't have single points of failure. I think Mayo did something similar?
+
+Robert Thompson: Correct. We actually started that diversification strategy three years ago after a smaller incident. We have three clearinghouses now and can route claims dynamically based on payer.
+
+[00:58:15]
+Amanda Rodriguez: Since we're all here - I wanted to ask about AI governance. We're piloting Healthcare.AI and our legal team is very anxious about model explainability and bias. Have any of your institutions developed AI review boards or governance frameworks?
+
+Emily Davis: Hopkins has an AI governance committee that reviews all clinical AI deployments. We require SHAP value explainability and demographic fairness testing before any model goes live. I can share our framework.
+
+Sarah Johnson: We're still developing ours. Epic's been pushing their ambient AI features but hasn't been forthcoming on model validation metrics. We've told them we won't deploy without transparency.
+
+Robert Thompson: Mayo has a formal ML operations team - they validate any AI whether it's from a vendor or developed internally. The Teladoc Chronic Care algorithms went through that process and we actually found some calibration issues that Teladoc had to fix before we'd deploy.
+
+[01:12:40]
+Jennifer Martinez: Great discussion. Let me capture action items.
+
+ACTION ITEMS
+------------
+[ ] Emily Davis: Share Hopkins AI governance framework with group
+[ ] Sarah Johnson: Circulate Epic 2024.3 infrastructure cost analysis
+[ ] Michael Chen: Connect with UCSF re: Amwell integration lessons learned
+[ ] Robert Thompson: Share Mayo's clearinghouse diversification architecture
+[ ] Amanda Rodriguez: Report back on Health Catalyst streaming ingestion pilot results
+[ ] Jennifer Martinez: Schedule joint vendor negotiation call for Q1 2025
+
+NEXT MEETING
+------------
+March 6, 2025 - Topic: Joint EHR vendor contract negotiations
+
+---
+
+CONFIDENTIAL: This document contains competitive intelligence and vendor pricing discussions. Do not distribute outside of consortium members.

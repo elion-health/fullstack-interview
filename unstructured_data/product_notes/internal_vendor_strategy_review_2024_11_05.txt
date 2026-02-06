@@ -1,0 +1,158 @@
+INTERNAL VENDOR STRATEGY REVIEW
+================================
+Date: November 5, 2024
+Organization: Massachusetts General Hospital
+Meeting Type: IT Leadership Strategy Session
+Classification: Internal - Confidential
+
+Attendees:
+  - Sarah Johnson (CIO)
+  - David Park (VP of Infrastructure)
+  - Lisa Wong (Director of Clinical Informatics)
+  - James Reilly (Director of Enterprise Applications)
+  - Priya Sharma (Manager, Vendor Relations)
+
+---
+
+AGENDA
+------
+1. Current vendor portfolio assessment
+2. Competitive landscape analysis
+3. FY2025 vendor investment priorities
+4. Risk mitigation strategies
+
+---
+
+MEETING NOTES
+
+1. CURRENT VENDOR PORTFOLIO
+---------------------------
+
+James Reilly opened with an overview of our vendor ecosystem:
+
+Core EHR: Epic Systems
+- We're running EpicCare 2024.1 across all clinical areas
+- Hyperspace deployed on 2,847 workstations
+- MyChart has 385,000 active patient accounts
+- Annual spend: $4.2M (includes support + licensing)
+
+Analytics Stack:
+- Cogito (Epic native) for operational reporting
+- Considering supplemental analytics platform
+
+Telehealth:
+- Currently evaluating - no contract in place
+- Have narrowed to Teladoc and Amwell
+
+Revenue Cycle:
+- Change Healthcare for claims clearinghouse
+- In-house team for coding and billing
+- Considering outsourcing to improve margins
+
+Key discussion point from Sarah: "We need to understand what our peer institutions are doing. I've heard Cleveland Clinic is getting good results with Health Catalyst DOS for their analytics needs. They presented at CHIME last month about reducing readmissions using Population Builder. If that's working for them, we should evaluate it."
+
+David Park raised concerns: "Adding Health Catalyst on top of Epic's Cogito creates data duplication and integration complexity. Mayo Clinic went down that path and their IT team told me they regret the decision - they're now trying to consolidate back to Epic-native tools."
+
+Lisa Wong countered: "But Mayo's situation is different - they have internal data science capabilities we don't have. Cleveland Clinic's approach with Healthcare.AI for predictive models might be more realistic for our team size."
+
+---
+
+2. COMPETITIVE LANDSCAPE ANALYSIS
+---------------------------------
+
+Priya Sharma presented research on peer institutions' vendor strategies:
+
+CLEVELAND CLINIC:
+- Still on Cerner Millennium platform (interesting given Oracle acquisition)
+- Heavy investment in Health Catalyst - using DOS, Population Builder, and piloting Healthcare.AI
+- Recently signed multi-year Tableau enterprise agreement
+- Telehealth: Mixed approach - Teladoc for mental health, exploring Amwell for specialty care
+
+JOHNS HOPKINS:
+- Epic shop like us
+- Using Teladoc extensively - heard they process 15,000 virtual visits/month
+- Change Healthcare for revenue cycle (affected by breach)
+- Have their own internal analytics team, less reliant on third-party tools
+- Emily Davis mentioned at last conference they're evaluating Waystar
+
+MAYO CLINIC:
+- Epic since 2018 migration
+- Built significant internal capabilities rather than buying vendor solutions
+- Exception: Tableau Server for enterprise visualization (Healthcare Analytics Accelerators)
+- Their Cogito implementation is considered gold standard
+- Built custom telehealth platform in-house
+- Have their own ML operations team for AI governance
+
+UCSF MEDICAL CENTER:
+- Cerner Millennium - planning major upgrade
+- Evaluating telehealth vendors - strong interest in Amwell
+- Using Change Healthcare but diversifying after breach
+- Smaller internal IT team, more reliant on vendor professional services
+- Heard they had issues with Meditech at affiliated clinics
+
+Key insight from Priya: "The trend I'm seeing is that larger academic medical centers are either going deep with Epic's native tools OR pairing Epic/Cerner with specialized analytics vendors like Health Catalyst. The middle ground of having 5-6 point solutions isn't working - integration costs eat the ROI."
+
+---
+
+3. FY2025 VENDOR INVESTMENT PRIORITIES
+--------------------------------------
+
+Sarah Johnson outlined three priority areas:
+
+PRIORITY 1: Analytics Platform Decision
+- Option A: Expand Cogito usage, invest in Epic Caboodle data warehouse
+- Option B: Implement Health Catalyst DOS alongside Epic
+- Need to quantify TCO difference and implementation timelines
+- Action: Schedule demos of Healthcare.AI and Epic's analytics roadmap
+
+Lisa Wong: "I attended a webinar where Cleveland Clinic showed their sepsis prediction model built on Healthcare.AI. The results were impressive but Amanda Rodriguez mentioned ongoing latency issues with real-time use cases. We should learn from their experience."
+
+PRIORITY 2: Telehealth Platform Selection
+- Teladoc strengths: Mental health module, established market presence
+- Amwell strengths: Converge integration with MyChart, better physician workflow
+- Both have Epic integrations but quality varies
+- Timeline: Decision by January, implementation by March
+
+James Reilly: "I talked to the IT team at UCSF and they mentioned customizing Amwell Converge heavily to get it working with their Cerner setup. If we go Amwell, we should budget for similar customization even though we're on Epic."
+
+PRIORITY 3: Revenue Cycle Resilience
+- Change Healthcare breach was a wake-up call
+- Options: Add secondary clearinghouse, or switch primary vendor
+- Waystar is the main alternative being discussed
+- Need to assess Payment Integrity module - that's where we get most value from Change
+
+David Park: "Johns Hopkins is apparently moving 60% of their claims off Change Healthcare. We should coordinate with Emily's team to understand their migration approach."
+
+---
+
+4. RISK MITIGATION
+------------------
+
+Discussion of vendor concentration risk:
+
+Sarah Johnson: "We're too dependent on Epic. If they have a major outage or security incident, we're paralyzed. I want to see a business continuity plan that accounts for Epic being unavailable for 72+ hours."
+
+David Park: "That's nearly impossible. Every clinical workflow runs through Hyperspace. The best we can do is robust backup and disaster recovery. Mayo has a good setup here - they briefed me on their Epic DR architecture at the user group meeting."
+
+James Reilly raised Change Healthcare again: "The breach showed us that even 'boring' infrastructure vendors can create massive business disruption. Our Intelligent Healthcare Network dependency is a real risk. I'd recommend we start processing at least 30% of claims through an alternate clearinghouse regardless of cost."
+
+Priya Sharma: "On a different note - we should watch the Cerner/Oracle Health situation. Cleveland Clinic and UCSF are both on Millennium and there's a lot of uncertainty about Oracle's long-term commitment to the product. If they decide to migrate to Epic, that could affect our vendor negotiating leverage."
+
+---
+
+ACTION ITEMS
+------------
+[ ] Priya: Schedule Health Catalyst DOS demo for December
+[ ] James: Get Epic's analytics roadmap presentation for FY2025
+[ ] Lisa: Connect with Cleveland Clinic informatics team re: Healthcare.AI implementation
+[ ] David: Research secondary clearinghouse options (Waystar, others)
+[ ] Sarah: Call Emily Davis at Hopkins re: Change Healthcare migration
+[ ] David: Document Epic business continuity requirements
+
+NEXT MEETING
+------------
+November 19, 2024 - Topic: Telehealth vendor final evaluation
+
+---
+
+CONFIDENTIAL: Contains strategic planning information and competitive intelligence.

@@ -1,0 +1,120 @@
+EMAIL THREAD: RE: FW: Vendor Evaluation Updates & Industry Intel
+================================================================
+Exported from Outlook - October 15, 2024
+
+---
+
+From: Michael Chen <michael.chen@clevelandclinic.org>
+To: Sarah Johnson <sarah.johnson@massgenhospital.org>
+CC: Emily Davis <emily.davis@jhmi.edu>
+Date: October 15, 2024 3:47 PM
+Subject: RE: FW: Vendor Evaluation Updates & Industry Intel
+
+Sarah,
+
+Quick update on our Healthcare.AI pilot. Six weeks in and the readmission model is performing well - 90.2% accuracy after tuning on our population. The sepsis early warning module is trickier. Real-time latency is still an issue even with the streaming ingestion Priya set up. We're seeing 8-12 minute delays which isn't ideal for acute care.
+
+Regarding your Teladoc question - we use their Mental Health module for behavioral health visits. Integration with PowerChart is mediocre at best. Our nurses hate it. I heard Hopkins had similar issues but supposedly made it work by building custom launch buttons. Emily, can you confirm?
+
+One thing I wanted to flag - ran into the UCSF team at Oracle Health World last week. They're deep into Millennium upgrade planning but also mentioned they're unhappy with their current analytics setup. Apparently their Tableau Server deployment is causing headaches - performance issues when connecting to Cerner's reporting database. They're now looking at Health Catalyst as a potential replacement. Might be worth reaching out to their CIO (I think it's Robert Kim?) if you want competitive intel on the Tableau vs Health Catalyst decision.
+
+Also heard an interesting rumor at the conference - apparently Mayo's internal telehealth platform had a major outage last month. Makes me appreciate having vendor support even if the integration is imperfect. Robert Thompson didn't mention it when I saw him but the Mayo IT folks at the networking event were pretty candid about it being a two-day recovery.
+
+- Michael
+
+---
+
+From: Emily Davis <emily.davis@jhmi.edu>
+To: Michael Chen <michael.chen@clevelandclinic.org>; Sarah Johnson <sarah.johnson@massgenhospital.org>
+Date: October 15, 2024 4:23 PM
+Subject: RE: FW: Vendor Evaluation Updates & Industry Intel
+
+Michael,
+
+Re: Teladoc - yes we got it working but it took significant custom development. We essentially built our own middleware to handle the Epic-Teladoc handoff. The native Teladoc integration assumes you're using their scheduling which conflicts with Cadence. Our team spent 400+ hours on it. Not ideal.
+
+Honestly I'm second-guessing the Teladoc decision now that we're seeing Amwell's Converge product. Their MyChart integration looks much cleaner. Mass General demoed it last month and Sarah said the physician reaction was positive. Sarah - did you end up moving forward with Amwell or still evaluating?
+
+On the UCSF Tableau situation - I've heard similar things. The issue isn't really Tableau, it's their data architecture. They're trying to do live queries against transactional tables. We considered Tableau but went with Health Catalyst specifically because DOS gives us a proper analytics data layer. Our Tableau users (we have about 50 power users in Finance) actually connect to DOS now instead of going direct to Clarity.
+
+Speaking of Health Catalyst - we're scheduling reference calls. Would Cleveland Clinic be willing to host a site visit? We want to see the Healthcare.AI implementation in production. Our CMIO is skeptical about model explainability and wants to talk to your clinical informaticists about how they present SHAP values to physicians.
+
+The Change Healthcare situation is still a mess here. We've moved about 30% of claims to Waystar but the Payment Integrity module at Change is hard to replicate. Waystar's claim scrubbing isn't as good. Our denial rate went up 2.3% on the migrated claims. Working through it but considering moving back partially.
+
+- Emily
+
+P.S. - Did either of you catch the Meditech Expanse announcement at CHIME? They're adding ambient documentation features similar to what Epic is doing. Interesting for community hospitals but probably not relevant for us directly. Though some of our network affiliates are on Meditech so I filed it away.
+
+---
+
+From: Sarah Johnson <sarah.johnson@massgenhospital.org>
+To: Emily Davis <emily.davis@jhmi.edu>; Michael Chen <michael.chen@clevelandclinic.org>
+Date: October 15, 2024 5:15 PM
+Subject: RE: FW: Vendor Evaluation Updates & Industry Intel
+
+All,
+
+Still evaluating Amwell vs Teladoc. The Amwell Converge demo went well but I'm getting pushback from Finance on the implementation cost. Their professional services estimate came in at $450K which is 2x what Teladoc quoted. My IT team thinks we could do the Amwell implementation with less vendor support if we staff it internally, but that assumes we can hire two contractors which is its own challenge.
+
+The Amwell-MyChart integration is definitely slicker than what I've seen from Teladoc. Patients can launch video visits directly from the portal without downloading a separate app. That's a big deal for our 65+ population who struggle with multiple apps. We also looked at their Automated Care Programs module - it does remote patient monitoring and can trigger alerts back to our Epic InBasket. Could be interesting for chronic disease management.
+
+Michael - thanks for the UCSF intel. I actually know their deputy CIO (Jennifer Okonkwo) from the Epic UGM. I'll reach out. The Tableau performance issues are concerning because we were considering Tableau Desktop licenses for our analyst team. If it doesn't play well with EHR data, that's a problem. We're currently 100% Cogito and it's limiting - can't join claims data, can't do geographic analysis, can't visualize anything that's not in Epic.
+
+Emily - yes to site visit at Cleveland Clinic. I'll join if you can coordinate a date that works. I specifically want to understand the Population Builder workflows and whether it actually reduces the burden on our IT team or creates more work.
+
+On Change Healthcare - we weren't directly affected by the breach (we use a mix of clearinghouses) but it's made our board nervous about vendor concentration. We're now doing formal risk assessments on all our "critical infrastructure" vendors which is creating work. Ironically, Epic is our biggest concentration risk but nobody wants to talk about that.
+
+One more thing - I had coffee with Robert Thompson from Mayo when he was in Boston last week. He mentioned they're building out their own population health analytics rather than buying Health Catalyst. They have a team of 12 data engineers working on it. I asked about Healthcare.AI specifically and he said they evaluated it but felt they could build equivalent models internally. Obviously Mayo has resources most of us don't, but it made me wonder if we should be investing more in internal capabilities vs vendor solutions.
+
+- Sarah
+
+---
+
+From: Michael Chen <michael.chen@clevelandclinic.org>
+To: Sarah Johnson <sarah.johnson@massgenhospital.org>; Emily Davis <emily.davis@jhmi.edu>
+Date: October 15, 2024 6:02 PM
+Subject: RE: FW: Vendor Evaluation Updates & Industry Intel
+
+Build vs buy is the eternal question. Mayo can afford to build because they have scale and talent density. For Cleveland Clinic, the math worked out in favor of Health Catalyst because:
+
+1. DOS implementation was $800K but saved us from a $1.2M data warehouse build
+2. Population Builder replaced 3 FTEs worth of manual cohort extraction
+3. Healthcare.AI models would have taken 18+ months to build internally
+
+That said, we're still dependent on Priya's team at Health Catalyst for model tuning. We don't have internal ML engineering depth. If they raised prices significantly or got acquired, we'd be in a tough spot.
+
+Site visit - happy to host. November 12-14 works for our team. Amanda Rodriguez (our Chief Analytics Officer) can walk you through the Healthcare.AI clinical workflows. She's been the champion internally and has good perspective on physician adoption challenges.
+
+Re: Tableau vs Cogito vs Health Catalyst - they serve different purposes:
+- Cogito: Operational reporting, Epic-native, limited to Epic data
+- Tableau: Visualization layer, works with any data source, requires underlying data architecture
+- Health Catalyst DOS: Data platform, does ETL/integration/analytics, can feed Tableau or replace Cogito for some use cases
+
+We actually have all three. Cogito for real-time operational dashboards, DOS + Population Builder for population health and research, Tableau for executive and board reporting (Finance team loves it). HealtheIntent (Cerner's population health tool) was in the mix but we sunset it when we went with Health Catalyst. The Cerner tools don't get much investment anymore since the Oracle acquisition.
+
+Emily - on Waystar, I'd be careful. We looked at them as a backup clearinghouse and found their claim editing rules were less sophisticated than Change Healthcare. Your denial rate increase isn't surprising. The Intelligent Healthcare Network has much better payer rule libraries because of their market share. It's a classic chicken-and-egg problem for new entrants.
+
+- Michael
+
+---
+
+From: Emily Davis <emily.davis@jhmi.edu>
+To: Michael Chen <michael.chen@clevelandclinic.org>; Sarah Johnson <sarah.johnson@massgenhospital.org>
+Date: October 15, 2024 6:45 PM
+Subject: RE: FW: Vendor Evaluation Updates & Industry Intel
+
+November 12-14 works. I'll coordinate with Sarah and send a calendar invite for the 13th.
+
+Quick update while I'm thinking about it - our Teladoc contract is up for renewal in January. After this thread I'm going to push to delay renewal and do a proper Amwell evaluation first. The Mental Health module has been fine but General Medical visits have been problematic. Patients complain about the app, physicians complain about documentation, and we've never gotten the Epic integration to a good place despite the custom middleware.
+
+I also want to understand if Amwell's Converge can replace our current Teladoc footprint entirely or if we'd need to run both in parallel during transition. Hopkins already has vendor sprawl in telehealth - we have Teladoc for scheduled visits, an internal solution for ICU monitoring, and some departments went rogue and started using Doximity for ad-hoc consults. Consolidating would be nice but the change management is daunting.
+
+Sarah - your point about Mayo building internally is interesting but also intimidating. Robert Thompson showed me their data platform architecture at CHIME and it's impressive. They have custom integrations pulling from Epic, their research data warehouse, claims feeds, social determinants databases. But they also have had that team for 5+ years building institutional knowledge. Starting from scratch now would be hard.
+
+Actually - does anyone know what UCSF uses for population health analytics? They're Cerner so HealtheIntent would be the obvious choice, but I've heard mixed reviews. If they're moving to Health Catalyst that's another data point for the DOS vs Cerner-native tools comparison.
+
+One last thing - our legal team is asking about AI model liability. If Healthcare.AI's readmission model misses a high-risk patient and they're discharged inappropriately, who's liable? I assume Health Catalyst has strong indemnification language but I want to compare contract terms when we get to that stage.
+
+Thanks for the intel sharing. This is incredibly helpful.
+
+- Emily

@@ -1,0 +1,191 @@
+ANALYTICS PLATFORM DEMO DAY - CONSOLIDATED NOTES
+=================================================
+Date: September 25, 2024
+Location: Johns Hopkins Hospital - Turner Auditorium
+Event Type: Vendor Evaluation - Full Day Session
+
+Host Organization: Johns Hopkins Hospital
+Evaluation Team:
+  - Emily Davis (VP of Health IT) - Decision Maker
+  - Marcus Williams (Chief Data Officer)
+  - Dr. Karen Chen (Clinical Informatics Director)
+  - Anthony Russo (Finance Director, IT)
+  - Samantha Lee (Data Engineering Lead)
+
+Vendors Presenting:
+  - Health Catalyst (9:00 AM - 11:30 AM)
+  - Tableau Healthcare (1:00 PM - 3:00 PM)
+  - Dimensional Insight (3:30 PM - 5:00 PM)
+
+---
+
+SESSION 1: HEALTH CATALYST
+==========================
+Presenters:
+  - James Wu (VP Customer Success)
+  - Priya Patel (Senior Data Scientist)
+  - Ryan Mitchell (Solutions Architect)
+
+Overview of Products Demonstrated:
+- Data Operating System (DOS)
+- Population Builder
+- Healthcare.AI
+
+---
+
+[Opening - James Wu]
+Thanks for having us. Before I dive in, I want to mention that we work with several peer institutions you may know - Cleveland Clinic has been a customer for four years and recently expanded to Healthcare.AI. Massachusetts General is currently evaluating us as well. We understand the academic medical center environment.
+
+[Technical Demo - Ryan Mitchell]
+
+DOS Platform:
+- Showed ingestion from Epic Clarity database
+- Demonstrated late-binding data architecture
+- Real-time dashboard showing ED census, bed availability, OR utilization
+- Integration connectors for Epic, Cerner, Meditech demonstrated
+
+Emily Davis asked: "Cleveland Clinic told me they had latency issues getting data from their Cerner Millennium instance into DOS. How would that work with our Epic setup?"
+
+Ryan Mitchell: "Epic is actually easier - the Clarity reporting database updates more frequently than Cerner's. Cleveland's issues were specific to their Millennium configuration. We've solved that with our streaming ingestion pipeline, which is what we'd recommend for Hopkins given your real-time needs."
+
+Population Builder Demo:
+- Created cohort of diabetic patients with HbA1c > 8% in past 90 days
+- Showed exclusion criteria builder
+- Demonstrated integration with Epic MyChart for patient outreach
+- Risk stratification using social determinants data
+
+Dr. Karen Chen: "Mayo Clinic presented something similar at AMIA using Epic's native Cogito. Why would we need a third-party tool?"
+
+Priya Patel: "Cogito is great for operational reporting but limited for complex cohort building. Population Builder lets you incorporate external data sources - social determinants, claims data, HIE feeds - that Epic doesn't natively handle. Mayo actually uses Tableau on top of Cogito for that reason."
+
+Healthcare.AI Demo:
+- 30-day readmission risk model
+- Model explainability with SHAP values
+- Integration with clinical workflows via API
+- Demonstrated model monitoring dashboard
+
+Marcus Williams: "What's the accuracy on that readmission model?"
+
+Priya Patel: "84% baseline, 89-91% when fine-tuned on institution-specific data. Cleveland Clinic is seeing 90.2% accuracy after six months of tuning."
+
+Anthony Russo: "Pricing question - Cleveland's implementation was reportedly $2.5M over three years. What would Hopkins look at?"
+
+James Wu: "That's in the ballpark. DOS platform is $400K annually, Population Builder adds $180K, Healthcare.AI is another $180K. With your patient volume - about 900,000 encounters - you're looking at $760K annually plus implementation."
+
+[Q&A Summary]
+- Samantha Lee asked about data engineering resources needed - estimate 2 FTE for first year
+- Emily Davis asked about Change Healthcare data integration - confirmed compatible
+- Marcus Williams asked about comparison to Cerner HealtheIntent - positioned DOS as more flexible
+
+---
+
+SESSION 2: TABLEAU HEALTHCARE
+=============================
+Presenters:
+  - Jennifer Park (Healthcare Account Executive)
+  - Michael Torres (Solutions Engineer)
+
+Overview of Products Demonstrated:
+- Tableau Desktop
+- Tableau Server
+- Healthcare Analytics Accelerators
+
+---
+
+[Opening - Jennifer Park]
+We're excited to present to Hopkins. You'll be in good company - Mayo Clinic, Cleveland Clinic, and UCSF all use Tableau extensively for their analytics needs. In fact, the Mayo team won a Tableau Visionary award last year for their clinical quality dashboards.
+
+[Technical Demo - Michael Torres]
+
+Tableau Server Architecture:
+- Showed enterprise deployment topology
+- Role-based access control for clinical vs. operational data
+- Mobile access via Tableau Mobile app
+- Demonstrated embedding in Epic Hyperspace via web component
+
+Healthcare Analytics Accelerators:
+- Pre-built dashboard for ED throughput
+- Readmission risk visualization (connects to external ML models)
+- Financial analytics template for revenue cycle
+- Population health geographic mapping
+
+Dr. Karen Chen: "How does this compare to Epic's Cogito Dashboards?"
+
+Michael Torres: "Cogito is designed for Epic data. Tableau can visualize data from any source - we commonly see customers pulling from Epic, claims data, patient surveys, even competitor data for market analysis. Mayo Clinic uses us alongside Cogito for that reason - operational stuff stays in Cogito, strategic analytics come to Tableau."
+
+Emily Davis: "I've heard UCSF had performance issues with Tableau Server when they tried to connect it to their Cerner data warehouse."
+
+Michael Torres: "That's typically a data architecture issue, not Tableau. UCSF was trying to do live queries against their transactional database. We recommend extract-based approaches for healthcare data - refresh overnight or every few hours depending on the use case."
+
+Samantha Lee: "What about real-time?"
+
+Michael Torres: "For true real-time, you'd want a streaming architecture feeding Tableau. Health Catalyst DOS does this well actually - several customers use DOS as the real-time layer feeding Tableau for visualization. Cleveland Clinic has that exact setup."
+
+[Pricing Discussion]
+Jennifer Park: "Tableau Creator licenses are $70/user/month, Explorer is $42, Viewer is $15. For Hopkins' scale - estimating 50 creators, 200 explorers, 2000 viewers - annual cost would be approximately $560K for licensing. Server infrastructure is additional."
+
+Anthony Russo: "That's less than Health Catalyst but it seems like we'd need both?"
+
+Jennifer Park: "It depends on your use case. If you need advanced ML capabilities, yes. If you primarily need visualization and self-service analytics, Tableau alone can work. Many health systems start with Tableau and add a data platform later."
+
+---
+
+SESSION 3: DIMENSIONAL INSIGHT (ABBREVIATED NOTES)
+=================================================
+Presenters:
+  - Karen Walsh (VP of Healthcare)
+  - Tom Bradley (Sales Engineer)
+
+Products: Diver Platform, Healthcare Performance Analytics
+
+Key Points:
+- Positioned as mid-market alternative to Health Catalyst
+- Stronger in community hospital segment - mentioned Meditech Expanse integration
+- Less presence in academic medical centers
+- Pricing: ~$300K annually for Hopkins scale
+
+Emily's Note: "Not a fit for our needs - better suited for our community affiliate hospitals that aren't on Epic. Could be worth revisiting when we look at network-wide analytics."
+
+Marcus Williams: "They mentioned UCSF's affiliated community hospitals use Dimensional Insight. Worth checking if integration with our Epic instance would work for those facilities."
+
+---
+
+END-OF-DAY EVALUATION DISCUSSION
+================================
+
+Emily Davis: "Let's do a quick debrief. Karen, your clinical perspective?"
+
+Dr. Karen Chen: "Health Catalyst has the strongest clinical use cases. The Healthcare.AI readmission model is compelling - Cleveland's results are impressive. But I'm worried about adoption. Our physicians barely use Cogito; adding another platform seems risky."
+
+Marcus Williams: "From a data architecture perspective, I like DOS. Our current Clarity-based reporting is hitting limits. The late-binding architecture would give us flexibility we don't have today. But the implementation lift is significant."
+
+Samantha Lee: "I'd want to talk to Cleveland Clinic's data engineering team. They're similar size and complexity to us. If they needed 2 FTEs for ongoing maintenance, that changes our TCO calculation."
+
+Anthony Russo: "On pure cost, Tableau is cheaper but it's not apples to apples. If we need Health Catalyst for data infrastructure anyway, adding Tableau on top makes the total spend higher than just going deep with Health Catalyst's visualization tools."
+
+Emily Davis: "Here's what I'm thinking - let's schedule site visits. I want to see Cleveland Clinic's Health Catalyst implementation in person. I also want to talk to Mayo about their Tableau setup and understand why they didn't go with Health Catalyst. And we should check in with Sarah Johnson at Mass General - she mentioned they're doing a similar evaluation."
+
+Marcus Williams: "Agreed. We should also understand the Change Healthcare integration angle. Our revenue cycle data is critical and after the breach, I want to make sure any analytics platform can work with multiple clearinghouses."
+
+Emily Davis: "One more thing - I want to understand how UCSF is handling analytics with their Cerner Millennium setup. If Oracle decides to sunset Millennium, there could be a migration wave that affects vendor capacity. Health Catalyst supporting both Epic and Cerner is actually a point in their favor."
+
+---
+
+ACTION ITEMS
+------------
+[ ] Emily: Schedule site visit to Cleveland Clinic (Health Catalyst reference)
+[ ] Marcus: Request technical architecture call with Health Catalyst
+[ ] Karen: Connect with Cleveland Clinic CMIO re: clinical adoption
+[ ] Anthony: Build TCO comparison model (HC only vs Tableau only vs HC+Tableau)
+[ ] Samantha: Talk to UCSF data engineering re: Cerner-Tableau integration
+[ ] Emily: Call Sarah Johnson at MGH re: their evaluation status
+
+NEXT STEPS
+----------
+- Site visits in October
+- Final recommendation to IT Steering Committee: November 15
+- FY2025 budget submission deadline: December 1
+
+---
+
+Document Classification: Internal - Vendor Evaluation
