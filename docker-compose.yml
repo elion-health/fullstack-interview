@@ -8,6 +8,9 @@ services:
       POSTGRES_USER: elion
       POSTGRES_PASSWORD: elion_dev_password
       POSTGRES_DB: elion_interview
+      # Init into a subdirectory of the mount so the volume root can contain
+      # lost+found / other driver artifacts without breaking initdb.
+      PGDATA: /var/lib/postgresql/data/pgdata
     ports:
       - "5432:5432"
     volumes:

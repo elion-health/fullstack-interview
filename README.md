@@ -230,6 +230,28 @@ If you encounter database connection errors:
    DATABASE_URL=postgresql://elion:elion_dev_password@localhost:5432/elion_interview
    ```
 
+### Port 5432 already in use
+
+If `docker compose up` fails with `bind: address already in use` on port 5432, you already have Postgres running on the host. Either stop it (`brew services stop postgresql` on macOS) or remap the container port — edit `docker-compose.yml`:
+
+```yaml
+ports:
+  - "5433:5432"
+```
+
+…and update `DATABASE_URL` in `.env.local` to use `5433`.
+
+### Container starts but Postgres won't initialize
+
+If `docker compose logs postgres` shows `initdb: error: directory "/var/lib/postgresql/data" exists but is not empty` or similar, the data volume has stale or unexpected contents. Reset it:
+
+```bash
+docker compose down -v
+docker compose up -d
+```
+
+Note: `-v` removes the volume and **all** local Postgres data — you'll need to re-run migrations and seed.
+
 ### Reset the database
 
 If you need to start fresh:
