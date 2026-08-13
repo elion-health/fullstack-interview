@@ -165,7 +165,7 @@ The home page displays:
 
 ## Working with MikroORM
 
-[MikroORM Docs](https://mikro-orm.io/docs/guide/first-entity)
+[MikroORM Docs](https://mikro-orm.io/docs/6.6/guide/first-entity)
 
 ### Creating a New Entity
 
