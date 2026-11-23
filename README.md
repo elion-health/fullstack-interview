@@ -12,7 +12,7 @@ A platform for healthcare IT leaders to track and analyze vendor relationships, 
 
 ## Prerequisites
 
-- [Node.js 22.12+](https://nodejs.org/en/download/) installed
+- [Node.js 20.19+ or 22.12+](https://nodejs.org/en/download/) installed
 - [Docker Desktop](https://docs.docker.com/get-docker/) installed (includes Docker Compose)
 
 ## Getting Started
@@ -52,10 +52,11 @@ Create a `.env.local` file in the root directory:
 cp .env.example .env.local
 ```
 
-Configure `DATABASE_URL` in `.env.local` to match your local PostgreSQL instance:
+Then add your OpenAI API key to `.env.local`, and make sure `DATABASE_URL` matches your local PostgreSQL instance:
 
 ```bash
 DATABASE_URL=postgresql://elion:elion_dev_password@localhost:5432/elion_interview
+OPENAI_API_KEY=<provided_openai_key>
 ```
 
 An exported `DATABASE_URL` overrides `.env.local`.
