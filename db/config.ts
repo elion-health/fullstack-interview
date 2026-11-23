@@ -1,12 +1,12 @@
-import { defineConfig } from "@mikro-orm/postgresql";
 import { Migrator } from "@mikro-orm/migrations";
-import { User } from "./entities/User";
-import { HealthSystem } from "./entities/HealthSystem";
-import { Vendor } from "./entities/Vendor";
-import { Product } from "./entities/Product";
-
+import { defineConfig } from "@mikro-orm/postgresql";
 // Load environment variables from .env.local
 import { config as dotenvConfig } from "dotenv";
+import { HealthSystem } from "./entities/HealthSystem";
+import { Product } from "./entities/Product";
+import { User } from "./entities/User";
+import { Vendor } from "./entities/Vendor";
+
 dotenvConfig({ path: ".env.local" });
 
 export default defineConfig({

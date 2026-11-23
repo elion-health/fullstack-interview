@@ -12,7 +12,7 @@ A platform for healthcare IT leaders to track and analyze vendor relationships, 
 
 ## Prerequisites
 
-- [Node.js 20+](https://nodejs.org/en/download/) installed
+- [Node.js 20.19+ or 22.12+](https://nodejs.org/en/download/) installed
 - [Docker Desktop](https://docs.docker.com/get-docker/) installed (includes Docker Compose)
 
 ## Getting Started
@@ -20,7 +20,7 @@ A platform for healthcare IT leaders to track and analyze vendor relationships, 
 ### 1. Install Dependencies
 
 ```bash
-npm install
+npm ci
 ```
 
 ### 2. Start PostgreSQL with Docker
@@ -28,7 +28,7 @@ npm install
 Start the PostgreSQL database container:
 
 ```bash
-docker compose up -d
+docker compose up -d --wait
 ```
 
 This will start a PostgreSQL 18 container with the following configuration:
@@ -52,12 +52,14 @@ Create a `.env.local` file in the root directory:
 cp .env.example .env.local
 ```
 
-Then add your OpenAI API key to `.env.local`:
+Then add your OpenAI API key to `.env.local`, and make sure `DATABASE_URL` matches your local PostgreSQL instance:
 
 ```bash
 DATABASE_URL=postgresql://elion:elion_dev_password@localhost:5432/elion_interview
 OPENAI_API_KEY=<provided_openai_key>
 ```
+
+An exported `DATABASE_URL` overrides `.env.local`.
 
 ### 4. Run Database Migrations and Seed Data
 
@@ -67,7 +69,7 @@ Run migrations to create the database schema:
 npm run db:migrate:up
 ```
 
-Seed the database with sample data:
+Seed the local database (**replaces existing data; check `DATABASE_URL` first**):
 
 ```bash
 npm run db:seed
@@ -128,6 +130,8 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 - `npm run db:migrate:up` - Run pending migrations
 - `npm run db:migrate:down` - Rollback last migration
 - `npm run db:seed` - Seed database with sample data
+- `npm run test:run` - Run tests once
+- `bash verify-setup.sh` - Check database and build (stop dev first; internet needed for fonts)
 
 ## Data Model
 
