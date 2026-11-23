@@ -1,14 +1,17 @@
 import {
   Entity,
+  ManyToOne,
+  OptionalProps,
   PrimaryKey,
   Property,
-  ManyToOne,
   type Rel,
 } from "@mikro-orm/core";
 import { Vendor } from "./Vendor";
 
 @Entity()
 export class Product {
+  [OptionalProps]?: "createdAt" | "updatedAt";
+
   @PrimaryKey({ type: "number" })
   id!: number;
 

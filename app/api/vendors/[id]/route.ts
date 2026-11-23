@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { withORM } from "@/db/orm";
 import { Vendor } from "@/db/entities/Vendor";
+import { withORM } from "@/db/orm";
 
 // GET /api/vendors/:id - Fetch a single vendor with products
 export async function GET(
@@ -21,10 +21,7 @@ export async function GET(
     });
 
     if (!vendor) {
-      return NextResponse.json(
-        { error: "Vendor not found" },
-        { status: 404 },
-      );
+      return NextResponse.json({ error: "Vendor not found" }, { status: 404 });
     }
 
     return NextResponse.json({ data: vendor });

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { withORM } from "@/db/orm";
 import { Vendor } from "@/db/entities/Vendor";
+import { withORM } from "@/db/orm";
 
 // GET /api/vendors - Fetch all vendors
 export async function GET() {

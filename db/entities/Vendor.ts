@@ -24,7 +24,10 @@ export class Vendor {
   @Property({ type: "string", nullable: true })
   website?: string;
 
-  @OneToMany(() => Product, (product) => product.vendor)
+  @OneToMany(
+    () => Product,
+    (product) => product.vendor,
+  )
   products = new Collection<Product>(this);
 
   @Property({ type: "Date" })

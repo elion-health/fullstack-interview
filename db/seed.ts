@@ -1,10 +1,10 @@
 import "reflect-metadata";
 import { MikroORM } from "@mikro-orm/core";
 import config from "./config";
-import { User } from "./entities/User";
 import { HealthSystem } from "./entities/HealthSystem";
-import { Vendor } from "./entities/Vendor";
 import { Product } from "./entities/Product";
+import { User } from "./entities/User";
+import { Vendor } from "./entities/Vendor";
 
 async function seed() {
   const orm = await MikroORM.init(config);

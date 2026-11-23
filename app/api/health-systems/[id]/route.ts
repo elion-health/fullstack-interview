@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { withORM } from "@/db/orm";
 import { HealthSystem } from "@/db/entities/HealthSystem";
+import { withORM } from "@/db/orm";
 
 // GET /api/health-systems/:id - Fetch a single health system with vendors
 export async function GET(

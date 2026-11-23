@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+} from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -18,7 +18,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 
 interface Product {
   id: number;
@@ -49,7 +49,7 @@ export default function VendorDetailPage() {
     fetch(`/api/vendors/${params.id}`)
       .then((res) => {
         if (!res.ok) {
-          throw new Error('Vendor not found');
+          throw new Error("Vendor not found");
         }
         return res.json();
       })
@@ -80,9 +80,9 @@ export default function VendorDetailPage() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              {error || 'Vendor not found'}
+              {error || "Vendor not found"}
             </p>
-            <Button onClick={() => router.push('/')} className="mt-4">
+            <Button onClick={() => router.push("/")} className="mt-4">
               Back to Home
             </Button>
           </CardContent>
@@ -96,7 +96,7 @@ export default function VendorDetailPage() {
       <div>
         <Button
           variant="outline"
-          onClick={() => router.push('/')}
+          onClick={() => router.push("/")}
           className="mb-4"
         >
           ← Back to Home
@@ -125,7 +125,7 @@ export default function VendorDetailPage() {
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">
-            {vendor.description || 'No description available'}
+            {vendor.description || "No description available"}
           </p>
         </CardContent>
       </Card>
@@ -133,9 +133,7 @@ export default function VendorDetailPage() {
       <Card>
         <CardHeader>
           <CardTitle>Products</CardTitle>
-          <CardDescription>
-            Products offered by {vendor.name}
-          </CardDescription>
+          <CardDescription>Products offered by {vendor.name}</CardDescription>
         </CardHeader>
         <CardContent>
           {vendor.products.length === 0 ? (
@@ -164,10 +162,10 @@ export default function VendorDetailPage() {
                       )}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
-                      {product.version || 'N/A'}
+                      {product.version || "N/A"}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
-                      {product.description || 'N/A'}
+                      {product.description || "N/A"}
                     </TableCell>
                   </TableRow>
                 ))}

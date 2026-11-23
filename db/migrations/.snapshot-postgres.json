@@ -1,7 +1,5 @@
 {
-  "namespaces": [
-    "public"
-  ],
+  "namespaces": ["public"],
   "name": "public",
   "tables": [
     {
@@ -70,9 +68,7 @@
       "indexes": [
         {
           "keyName": "health_system_pkey",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "constraint": true,
           "primary": true,
@@ -150,9 +146,7 @@
       "indexes": [
         {
           "keyName": "user_pkey",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "constraint": true,
           "primary": true,
@@ -239,9 +233,7 @@
       "indexes": [
         {
           "keyName": "vendor_pkey",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "constraint": true,
           "primary": true,
@@ -337,9 +329,7 @@
       "indexes": [
         {
           "keyName": "product_pkey",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "constraint": true,
           "primary": true,
@@ -350,13 +340,9 @@
       "foreignKeys": {
         "product_vendor_id_foreign": {
           "constraintName": "product_vendor_id_foreign",
-          "columnNames": [
-            "vendor_id"
-          ],
+          "columnNames": ["vendor_id"],
           "localTableName": "public.product",
-          "referencedColumnNames": [
-            "id"
-          ],
+          "referencedColumnNames": ["id"],
           "referencedTableName": "public.vendor",
           "updateRule": "cascade"
         }
