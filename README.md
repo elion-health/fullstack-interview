@@ -12,7 +12,7 @@ A platform for healthcare IT leaders to track and analyze vendor relationships, 
 
 ## Prerequisites
 
-- [Node.js 22.12+](https://nodejs.org/en/download/) installed (Node 22 LTS recommended)
+- [Node.js 22.12+](https://nodejs.org/en/download/) installed
 - [Docker Desktop](https://docs.docker.com/get-docker/) installed (includes Docker Compose)
 
 ## Getting Started
@@ -25,7 +25,7 @@ npm ci
 
 ### 2. Start PostgreSQL with Docker
 
-Start the PostgreSQL database container and wait until it is ready:
+Start the PostgreSQL database container:
 
 ```bash
 docker compose up -d --wait
@@ -58,7 +58,7 @@ Configure `DATABASE_URL` in `.env.local` to match your local PostgreSQL instance
 DATABASE_URL=postgresql://elion:elion_dev_password@localhost:5432/elion_interview
 ```
 
-An exported `DATABASE_URL` takes precedence over `.env.local`. Unset an inherited value if you want to use this file's configuration.
+An exported `DATABASE_URL` overrides `.env.local`.
 
 ### 4. Run Database Migrations and Seed Data
 
@@ -68,7 +68,7 @@ Run migrations to create the database schema:
 npm run db:migrate:up
 ```
 
-Seed the database with sample data. **This deletes existing data**; confirm `DATABASE_URL` points to your local development database before running it:
+Seed the local database (**replaces existing data; check `DATABASE_URL` first**):
 
 ```bash
 npm run db:seed
@@ -86,19 +86,7 @@ This will populate your database with:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the application. Confirm the vendor and health-system lists load and that you can open their detail pages.
-
-### Verify Setup
-
-From the repository root, before starting the dev server:
-
-```bash
-bash verify-setup.sh
-npm run test:run
-npm run lint
-```
-
-The setup script checks Docker, the database configured by `DATABASE_URL`, schema, seed data, and the production build. It does not require a host-installed `psql` or modify the database. The build downloads Google fonts, so it needs internet access. Stop the dev server before running a build.
+Open [http://localhost:3000](http://localhost:3000) to see the application.
 
 ## Project Structure
 
@@ -140,10 +128,9 @@ The setup script checks Docker, the database configured by `DATABASE_URL`, schem
 - `npm run db:migrate:create` - Create a new migration
 - `npm run db:migrate:up` - Run pending migrations
 - `npm run db:migrate:down` - Rollback last migration
-- `npm run db:seed` - Replace database contents with sample data (destructive)
+- `npm run db:seed` - Seed database with sample data
 - `npm run test:run` - Run tests once
-- `npm test` - Run tests in watch mode
-- `bash verify-setup.sh` - Check local setup and production build
+- `bash verify-setup.sh` - Check database and build (stop dev first; internet needed for fonts)
 
 ## Data Model
 

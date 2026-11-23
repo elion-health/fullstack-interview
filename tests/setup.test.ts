@@ -1,4 +1,4 @@
-import { execFileSync, spawnSync } from "node:child_process";
+import { spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { delimiter, join, resolve } from "node:path";
@@ -71,10 +71,6 @@ function verify(
 }
 
 describe("setup verification", () => {
-  it("has valid shell syntax", () => {
-    expect(() => execFileSync("bash", ["-n", script])).not.toThrow();
-  });
-
   it("uses the configured database and runs the build after checking seed data", () => {
     const result = verify();
     expect(result.status).toBe(0);
